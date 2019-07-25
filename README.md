@@ -24,7 +24,7 @@ Currently this libary is in development with the following items pending:
 
 ## Installation (Pending Publish)
 
-Installation is done via NuGet:
+Installation is done via PIP:
 
     pip install conditions-py
 
