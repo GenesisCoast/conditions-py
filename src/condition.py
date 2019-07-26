@@ -4,8 +4,6 @@ from validators.string_validator import StringValidator
 from validators.object_validator import ObjectValidator
 from validators.integer_validator import IntegerValidator
 
-Condition().requires('test', 'test').is_not_null()
-
 
 TValidator = TypeVar('TValidator', StringValidator, ObjectValidator, IntegerValidator)
 
