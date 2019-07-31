@@ -2,11 +2,11 @@ from typing import TypeVar, Generic
 from src.validators.validator import Validator
 from src.validators.string_validator import StringValidator
 from src.validators.object_validator import ObjectValidator
+from src.validators.number_validator import NumberValidator
 from src.validators.boolean_validator import BooleanValidator
-from src.validators.integer_validator import IntegerValidator
 
 
-TValidator = TypeVar('TValidator', StringValidator, ObjectValidator, IntegerValidator)
+TValidator = TypeVar('TValidator', StringValidator, ObjectValidator, NumberValidator)
 
 
 class Condition(Generic[TValidator]):
@@ -21,8 +21,8 @@ class Condition(Generic[TValidator]):
         """
         if type(value) is str:
             return StringValidator(value, argument_name)
-        elif type(value) is int:
-            return IntegerValidator(value, argument_name)
+        elif type(value) is int or type(value) is float:
+            return NumberValidator(value, argument_name)
         elif type(value) is bool:
             return BooleanValidator(value, argument_name)
         else:

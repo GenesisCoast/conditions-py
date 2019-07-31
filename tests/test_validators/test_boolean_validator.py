@@ -68,4 +68,4 @@ def test_is_false_does_not_throw_error_on_false():
         validator.is_false()
     # Asset
     except ArgumentError:
-        pytest.fail('')
+        pytest.fail()

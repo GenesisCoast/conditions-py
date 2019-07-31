@@ -25,7 +25,7 @@ class StringValidator(Validator):
         Checks whether the given value is none (null). An exception is thrown otherwise.
         """
         if not self.value is None:
-            raise ArgumentError(
+            raise ArgumentNullError(
                 f'The argument `{self.argument_name}` should be NULL',
                 self.value,
                 self.argument_name
@@ -40,6 +40,7 @@ class StringValidator(Validator):
         """
         if self.value is None:
             raise ArgumentNullError(
+                f'The argument `{self.argument_name}` should not be NONE (NULL)',
                 self.value,
                 self.argument_name
             )

@@ -1,14 +1,18 @@
 from __future__ import annotations
 
+from typing import TypeVar
 from .validator import Validator
 from src.errors.argument_error import ArgumentError
 from src.errors.argument_null_error import ArgumentNullError
 from src.errors.argument_out_of_range_error import ArgumentOutOfRangeError
 
 
-class IntegerValidator(Validator):
+number = TypeVar('number', int, float)
+
+
+class NumberValidator(Validator):
     """
-    Contains all the integer validation conditions.
+    Contains all the number (int and float) validation conditions.
     """
 
 
@@ -19,7 +23,7 @@ class IntegerValidator(Validator):
         super().__init__(value, argument_name)
 
 
-    def is_in_range(self, min_value: int, max_value: int) -> IntegerValidator:
+    def is_in_range(self, min_value: number, max_value: number) -> NumberValidator:
         """
         Checks whether the given value is between `min_value` and `max_value` (including those values).
         An exception is thrown otherwise.
@@ -36,7 +40,7 @@ class IntegerValidator(Validator):
         return self
 
 
-    def is_not_in_range(self, min_value: int, max_value: int) -> IntegerValidator:
+    def is_not_in_range(self, min_value: number, max_value: number) -> NumberValidator:
         """
         Checks whether the given value is not between `min_value` and `max_value` (including those values).
         An exception is thrown otherwise.
@@ -53,7 +57,7 @@ class IntegerValidator(Validator):
         return self
 
 
-    def is_greater_than(self, min_value: int) -> IntegerValidator:
+    def is_greater_than(self, min_value: number) -> NumberValidator:
         """
         Checks whether the given value is greater than the specified `min_value`.
         An exception is thrown otherwise.
@@ -69,7 +73,7 @@ class IntegerValidator(Validator):
         return self
 
 
-    def is_greater_or_equal(self, min_value: int) -> IntegerValidator:
+    def is_greater_or_equal(self, min_value: number) -> NumberValidator:
         """
         Checks whether the given value is greater or equal to the specified `min_value`.
         An exception is thrown otherwise.
@@ -85,7 +89,7 @@ class IntegerValidator(Validator):
         return self
 
 
-    def is_less_than(self, max_value: int) -> IntegerValidator:
+    def is_less_than(self, max_value: number) -> NumberValidator:
         """
         Checks whether the given value is less than the specified `max_value`.
         An exception is thrown otherwise.
@@ -101,7 +105,7 @@ class IntegerValidator(Validator):
         return self
 
 
-    def is_less_or_equal(self, max_value: int) -> IntegerValidator:
+    def is_less_or_equal(self, max_value: number) -> NumberValidator:
         """
         Checks whether the given value is less or equal to the specified `max_value`.
         An exception is thrown otherwise.
@@ -117,7 +121,7 @@ class IntegerValidator(Validator):
         return self
 
 
-    def is_equal_to(self, value: int) -> IntegerValidator:
+    def is_equal_to(self, value: number) -> NumberValidator:
         """
         Checks whether the given value is equal to the specified `value`.
         An exception is thrown otherwise.
@@ -133,7 +137,7 @@ class IntegerValidator(Validator):
         return self
 
 
-    def is_not_equal_to(self, value: int) -> IntegerValidator:
+    def is_not_equal_to(self, value: number) -> NumberValidator:
         """
         Checks whether the given value is not equal to the specified `value`.
         An exception is thrown otherwise.
