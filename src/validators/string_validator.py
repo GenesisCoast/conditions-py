@@ -1,6 +1,11 @@
+from __future__ import annotations
+
 from .validator import Validator
-from errors.argument_error import ArgumentError
-from errors.argument_null_error import ArgumentNullError
+from src.helpers.regex_helper import RegexHelper
+from src.errors.argument_error import ArgumentError
+from src.errors.argument_null_error import ArgumentNullError
+from src.errors.argument_pattern_error import ArgumentPatternError
+
 
 class StringValidator(Validator):
     """
@@ -15,7 +20,7 @@ class StringValidator(Validator):
         super.__init__(value, argument_name)
 
 
-    def is_null(self) -> self:
+    def is_null(self) -> StringValidator:
         """
         Checks whether the given value is none (null). An exception is thrown otherwise.
         """
@@ -29,7 +34,7 @@ class StringValidator(Validator):
         return self
 
 
-    def is_not_null(self) -> self:
+    def is_not_null(self) -> StringValidator:
         """
         Checks whether the given value is NOT none (null). An exception is thrown otherwise.
         """
@@ -42,7 +47,7 @@ class StringValidator(Validator):
         return self
 
 
-    def is_null_or_empty(self) -> self:
+    def is_null_or_empty(self) -> StringValidator:
         """
         Checks whether the given value is none (null) or an empty string. An exception is thrown otherwise.
         """
@@ -57,7 +62,7 @@ class StringValidator(Validator):
         return self
 
 
-    def is_not_null_or_empty(self) -> self:
+    def is_not_null_or_empty(self) -> StringValidator:
         """
         Checks whether the given value is NOT none (null) or NOT an empty string. An exception is thrown otherwise.
         """
@@ -73,7 +78,7 @@ class StringValidator(Validator):
         return self
 
 
-    def is_null_or_whitespace(self) -> self:
+    def is_null_or_whitespace(self) -> StringValidator:
         """
         Checks whether the given value is none (null), empty, or consists only of white-space characters.
         An exception is thrown otherwise.
@@ -88,7 +93,7 @@ class StringValidator(Validator):
             )
 
 
-    def is_not_null_or_whitespace(self) -> self:
+    def is_not_null_or_whitespace(self) -> StringValidator:
         """
         Checks whether the given value is NOT none (null), NOT empty, and does NOT consist only of white-space characters.
         An exception is thrown otherwise.
@@ -105,7 +110,7 @@ class StringValidator(Validator):
         return self
 
 
-    def is_shorter_than(self, max_length: int) -> self:
+    def is_shorter_than(self, max_length: int) -> StringValidator:
         """
         Checks whether the given value is shorter in length, than the specified `max_length`.
         An exception is thrown otherwise.
@@ -120,7 +125,7 @@ class StringValidator(Validator):
         return self
 
 
-    def is_shorter_or_equal(self, max_length: int) -> self:
+    def is_shorter_or_equal(self, max_length: int) -> StringValidator:
         """
         Checks whether the given value is shorter or equal in length, than the specified `max_length`.
         An exception is thrown otherwise.
@@ -135,7 +140,7 @@ class StringValidator(Validator):
         return self
 
 
-    def is_longer_than(self, min_length: int) -> self:
+    def is_longer_than(self, min_length: int) -> StringValidator:
         """
         Checks whether the given value is longer in length, than the specified `min_length`.
         An exception is thrown otherwise.
@@ -150,7 +155,7 @@ class StringValidator(Validator):
         return self
 
 
-    def is_longer_or_equal(self, min_length: int) -> self:
+    def is_longer_or_equal(self, min_length: int) -> StringValidator:
         """
         Checks whether the given value is longer or equal in length, than the specified `min_length`.
         An exception is thrown otherwise.
@@ -165,7 +170,7 @@ class StringValidator(Validator):
         return self
 
 
-    def has_length(self, length: int) -> self:
+    def has_length(self, length: int) -> StringValidator:
         """
         Checks whether the given value is equal in length to the specified `length`. An exception is thrown otherwise.
         """
@@ -179,7 +184,7 @@ class StringValidator(Validator):
         return self
 
 
-    def does_not_have_length(self, length: int) -> self:
+    def does_not_have_length(self, length: int) -> StringValidator:
         """
         Checks whether the given value is unequal in length to the specified `length`. An exception is thrown otherwise.
         """
@@ -193,7 +198,7 @@ class StringValidator(Validator):
         return self
 
 
-    def starts_with(self, value: str) -> self:
+    def starts_with(self, value: str) -> StringValidator:
         """
         Checks whether the given value starts with the specified `value`. An exception is thrown otherwise.
         """
@@ -207,7 +212,7 @@ class StringValidator(Validator):
         return self
 
 
-    def does_not_start_with(self, value: str) -> self:
+    def does_not_start_with(self, value: str) -> StringValidator:
         """
         Checks whether the given value does not start with the specified `value`. An exception is thrown otherwise.
         """
@@ -221,7 +226,7 @@ class StringValidator(Validator):
         return self
 
 
-    def ends_with(self, value: str) -> self:
+    def ends_with(self, value: str) -> StringValidator:
         """
         Checks whether the given value ends with the specified `value`. An exception is thrown otherwise.
         """
@@ -235,7 +240,7 @@ class StringValidator(Validator):
         return self
 
 
-    def does_not_end_with(self, value: str) -> self:
+    def does_not_end_with(self, value: str) -> StringValidator:
         """
         Checks whether the given value does not end with the specified `value`. An exception is thrown otherwise.
         """
@@ -249,7 +254,7 @@ class StringValidator(Validator):
         return self
 
 
-    def contains(self, value: str) -> self:
+    def contains(self, value: str) -> StringValidator:
         """
         Checks whether the given value contains the specified `value`. An exception is thrown otherwise.
         """
@@ -263,7 +268,7 @@ class StringValidator(Validator):
         return self
 
 
-    def does_not_contain(self, value: str) -> self:
+    def does_not_contain(self, value: str) -> StringValidator:
         """
         Checks whether the given value does not contain the specified `value`. An exception is thrown otherwise.
         """
@@ -272,6 +277,36 @@ class StringValidator(Validator):
                 f'The argument `{self.argument_name}` should not contain `{value}` but was actually `{self.value}`',
                 self.value,
                 self.argument_name
+            )
+
+        return self
+
+
+    def is_regex_match(self, pattern: str) -> StringValidator:
+        """
+        Checks wether the given value matches the supplied `pattern`. An exception is thrown otherwise.
+        """
+        if not RegexHelper.is_match(pattern, self.value):
+            raise ArgumentPatternError(
+                f'The argument `{self.argument_name}` should match the pattern `{pattern}`',
+                self.value,
+                self.argument_name,
+                pattern
+            )
+
+        return self
+
+
+    def is_not_regex_match(self, pattern: str) -> StringValidator:
+        """
+        Checks whether the given value does not match the supplied `pattern`. An exception is thrown otherwise.
+        """
+        if RegexHelper.is_match(pattern, self.value):
+            raise ArgumentPatternError(
+                f'The argument `{self.argument_name}` should match the pattern `{pattern}`',
+                self.value,
+                self.argument_name,
+                pattern
             )
 
         return self

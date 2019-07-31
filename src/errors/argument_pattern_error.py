@@ -1,6 +1,6 @@
 from .argument_error import ArgumentError
 
-class ArgumentOutOfRangeError(ArgumentError):
+class ArgumentPatternError(ArgumentError):
     """
 
     """
@@ -9,11 +9,9 @@ class ArgumentOutOfRangeError(ArgumentError):
     def __init__(
         self,
         message: str,
-        value: int,
+        value: str,
         argument_name: str,
-        equal_to: int = None,
-        min_value: int = None,
-        max_value: int = None
+        pattern: str
     ):
         """
 
@@ -23,5 +21,4 @@ class ArgumentOutOfRangeError(ArgumentError):
             value,
             argument_name
         )
-        self.min_value = min_value
-        self.max_value = max_value
+        self.pattern = pattern

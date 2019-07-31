@@ -1,8 +1,9 @@
 from typing import TypeVar, Generic
-from validators.validator import Validator
-from validators.string_validator import StringValidator
-from validators.object_validator import ObjectValidator
-from validators.integer_validator import IntegerValidator
+from src.validators.validator import Validator
+from src.validators.string_validator import StringValidator
+from src.validators.object_validator import ObjectValidator
+from src.validators.boolean_validator import BooleanValidator
+from src.validators.integer_validator import IntegerValidator
 
 
 TValidator = TypeVar('TValidator', StringValidator, ObjectValidator, IntegerValidator)
@@ -10,7 +11,7 @@ TValidator = TypeVar('TValidator', StringValidator, ObjectValidator, IntegerVali
 
 class Condition(Generic[TValidator]):
     """
-
+    Base condition class to create the validator which corresponds to the value type.
     """
 
     @staticmethod
@@ -22,5 +23,7 @@ class Condition(Generic[TValidator]):
             return StringValidator(value, argument_name)
         elif type(value) is int:
             return IntegerValidator(value, argument_name)
+        elif type(value) is bool:
+            return BooleanValidator(value, argument_name)
         else:
             return ObjectValidator(value, argument_name)

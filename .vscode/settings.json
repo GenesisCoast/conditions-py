@@ -1,3 +1,35 @@
 {
-    "python.pythonPath": "C:\\Program Files\\Python\\Python37\\python.exe"
+    "python.pythonPath": "C:\\Program Files\\Python\\Python37\\python.exe",
+    "python.testing.nosetestArgs": [
+        "tests"
+    ],
+    "python.testing.pytestEnabled": true,
+    "python.testing.unittestEnabled": false,
+    "python.testing.nosetestsEnabled": false,
+    "python.testing.unittestArgs": [
+        "-v",
+        "-s",
+        "./tests",
+        "-p",
+        "*test*.py"
+    ],
+    "python.testing.pytestArgs": [
+        "tests"
+    ],
+    "cSpell.words": [
+        "Cmdlet",
+        "HKLM",
+        "Mkdir",
+        "Omiga",
+        "Sanderson",
+        "excinfo",
+        "parameterize",
+        "pscmdlet",
+        "psobject",
+        "pytest",
+        "recurse",
+        "scriptblock",
+        "securestring",
+        "snapin"
+    ]
 }

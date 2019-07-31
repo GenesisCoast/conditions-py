@@ -1,5 +1,7 @@
+from __future__ import annotations
+
 from .validator import Validator
-from errors.argument_error import ArgumentError
+from src.errors.argument_error import ArgumentError
 
 
 class BooleanValidator(Validator):
@@ -7,7 +9,15 @@ class BooleanValidator(Validator):
     Contains all the boolean validation conditions.
     """
 
-    def is_true(self) -> self:
+
+    def __init__(self, value: str, argument_name: str):
+        """
+        Initializes the validator base class with the `value` and `argument_name`.
+        """
+        super().__init__(value, argument_name)
+
+
+    def is_true(self) -> BooleanValidator:
         """
         Checks whether the given value is `True`. An exception is thrown otherwise.
         """
@@ -21,7 +31,7 @@ class BooleanValidator(Validator):
         return self
 
 
-    def is_false(self) -> self:
+    def is_false(self) -> BooleanValidator:
         """
         Checks whether the given value is `True`. An exception is thrown otherwise.
         """

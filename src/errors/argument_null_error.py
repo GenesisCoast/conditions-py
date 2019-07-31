@@ -10,8 +10,8 @@ class ArgumentNullError(ArgumentError):
         """
 
         """
-        super.__init__(
-            f'The argument `{argument_name}` is NULL',
+        super().__init__(
+            f'The argument `{argument_name}` should not be NONE (NULL)',
             value,
             argument_name
         )

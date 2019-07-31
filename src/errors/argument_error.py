@@ -7,7 +7,7 @@ class ArgumentError(Exception):
         """
 
         """
-        super.__init__(message)
+        super().__init__(message)
 
         self.value = value
         self.argument_name = argument_name
