@@ -8,6 +8,7 @@
 
 Conditions is a Python port of the famous .NET library [Conditions](https://github.com/ghuntley/conditions) which helps developers write pre- and postcondition validations in a fluent manner. Writing these validations is easy and it improves the readability and maintainability of code.
 
+<br>
 
 ## Roadmap
 
@@ -19,11 +20,13 @@ Currently this libary is in development with the following items pending:
 - Add integration testing.
 - Publish to Python package index.
 
+<br>
 
 ## Supported Platforms
 
 - Python 3+
 
+<br>
 
 ## Installation (Pending Publish)
 
@@ -31,11 +34,13 @@ Installation is done via PIP:
 
     pip install conditions-py
 
+<br>
 
 ## Unit Tests
 
 Tests are currently written using the Python `unittest` library. To execute tests in Visual Studio Code the nose test runner is used.
 
+<br>
 
 ## Usage
 
@@ -65,6 +70,8 @@ def multiple(left: str, right: str):
 ```
 
 A particular validation is executed immediately when it's method is called, and therefore all checks are executed in the order in which they are written:
+
+<br>
 
 ## With thanks to
 
