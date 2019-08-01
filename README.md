@@ -2,7 +2,7 @@
   <img alt="Image" src="https://i.imgur.com/XSacNPD.png?2"/>
 </p>
 
-![Build Status](https://travis-ci.org/GenesisCoast/conditions-py.svg?branch=master)
+[![Build Status](https://travis-ci.org/GenesisCoast/conditions-py.svg?branch=master)](https://travis-ci.org/GenesisCoast/conditions-py) [![codecov](https://codecov.io/gh/GenesisCoast/conditions-py/branch/master/graph/badge.svg)](https://codecov.io/gh/GenesisCoast/conditions-py)
 
 # Conditions-PY
 
