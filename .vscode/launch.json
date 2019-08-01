@@ -5,44 +5,64 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Python: Current File (Integrated Terminal)",
+            "name": "Python: Build Module",
             "type": "python",
             "request": "launch",
-            "program": "${file}",
-            "console": "integratedTerminal"
-        },
-        {
-            "name": "Python: Remote Attach",
-            "type": "python",
-            "request": "attach",
-            "port": 5678,
-            "host": "localhost",
-            "pathMappings": [
-                {
-                    "localRoot": "${workspaceFolder}",
-                    "remoteRoot": "."
-                }
+            "args": [
+                "setup.py",
+                "sdist"
             ]
         },
         {
-            "name": "Python: Module",
+            "name": "Python: PyPI Package",
             "type": "python",
             "request": "launch",
-            "module": "enter-your-module-name-here",
-            "console": "integratedTerminal"
-        },
-        {
-            "name": "Python: Django",
-            "type": "python",
-            "request": "launch",
-            "program": "${workspaceFolder}/manage.py",
-            "console": "integratedTerminal",
+            "preLaunchTask": "Python: Upgrade Setuptools Wheel",
             "args": [
-                "runserver",
-                "--noreload",
-                "--nothreading"
-            ],
-            "django": true
+                "setup.py",
+                "sdist",
+                "bdist_wheel"
+            ]
         }
+        // {
+        //     "name": "Python: Current File (Integrated Terminal)",
+        //     "type": "python",
+        //     "request": "launch",
+        //     "program": "${file}",
+        //     "console": "integratedTerminal"
+        // },
+        // {
+        //     "name": "Python: Remote Attach",
+        //     "type": "python",
+        //     "request": "attach",
+        //     "port": 5678,
+        //     "host": "localhost",
+        //     "pathMappings": [
+        //         {
+        //             "localRoot": "${workspaceFolder}",
+        //             "remoteRoot": "."
+        //         }
+        //     ]
+        // },
+        // {
+        //     "name": "Python: Module",
+        //     "type": "python",
+        //     "request": "launch",
+        //     "module": "enter-your-module-name-here",
+        //     "console": "integratedTerminal"
+        // },
+        // {
+        //     "name": "Python: Django",
+        //     "type": "python",
+        //     "request": "launch",
+        //     "program": "${workspaceFolder}/manage.py",
+        //     "console": "integratedTerminal",
+        //     "args": [
+        //         "runserver",
+        //         "--noreload",
+        //         "--nothreading"
+        //     ],
+        //     "django": true
+        // }
     ]
 }

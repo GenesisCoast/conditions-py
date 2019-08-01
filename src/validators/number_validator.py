@@ -2,9 +2,9 @@ from __future__ import annotations
 
 from typing import TypeVar
 from .validator import Validator
-from src.errors.argument_error import ArgumentError
-from src.errors.argument_null_error import ArgumentNullError
-from src.errors.argument_out_of_range_error import ArgumentOutOfRangeError
+from ..errors.argument_error import ArgumentError
+from ..errors.argument_null_error import ArgumentNullError
+from ..errors.argument_out_of_range_error import ArgumentOutOfRangeError
 
 
 number = TypeVar('number', int, float)

@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from .validator import Validator
-from src.errors.argument_error import ArgumentError
+from ..errors.argument_error import ArgumentError
 
 
 class BooleanValidator(Validator):

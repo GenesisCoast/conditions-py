@@ -1,9 +1,9 @@
 from typing import TypeVar, Generic
-from src.validators.validator import Validator
-from src.validators.string_validator import StringValidator
-from src.validators.object_validator import ObjectValidator
-from src.validators.number_validator import NumberValidator
-from src.validators.boolean_validator import BooleanValidator
+from .validators.validator import Validator
+from .validators.string_validator import StringValidator
+from .validators.object_validator import ObjectValidator
+from .validators.number_validator import NumberValidator
+from .validators.boolean_validator import BooleanValidator
 
 
 TValidator = TypeVar('TValidator', StringValidator, ObjectValidator, NumberValidator)

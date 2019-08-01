@@ -3,8 +3,8 @@ from __future__ import annotations
 from inspect import isclass
 from typing import Type, Union
 from .validator import Validator
-from src.errors.argument_error import ArgumentError
-from src.errors.argument_null_error import ArgumentNullError
+from ..errors.argument_error import ArgumentError
+from ..errors.argument_null_error import ArgumentNullError
 
 
 class ObjectValidator(Validator):

@@ -1,10 +1,10 @@
 from __future__ import annotations
 
 from .validator import Validator
-from src.helpers.regex_helper import RegexHelper
-from src.errors.argument_error import ArgumentError
-from src.errors.argument_null_error import ArgumentNullError
-from src.errors.argument_pattern_error import ArgumentPatternError
+from ..helpers.regex_helper import RegexHelper
+from ..errors.argument_error import ArgumentError
+from ..errors.argument_null_error import ArgumentNullError
+from ..errors.argument_pattern_error import ArgumentPatternError
 
 
 class StringValidator(Validator):

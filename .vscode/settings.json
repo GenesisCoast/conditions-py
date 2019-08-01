@@ -22,6 +22,7 @@
         "recurse",
         "scriptblock",
         "securestring",
+        "setuptools",
         "snapin"
     ]
 }
