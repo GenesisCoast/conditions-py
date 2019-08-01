@@ -1,12 +1,24 @@
-import unittest
+import pytest
 from src.validators.validator import Validator
 
 
-class ValidatorTests:
-    """
-    Unit Tests for the validator class.
+@pytest.mark.parametrize(
+    'value,argument_name',
+    [
+        (True, 'boolean_value'),
+        (1456, 'number_value'),
+        (45.76, 'float_value'),
+        ('this_is_a_value', 'string_value')
+    ]
+)
+def test_constructor_initializes_validator(value, argument_name):
     """
 
+    """
+    # Arrange / Act
+    validator = Validator(value, argument_name)
 
-if __name__ == '__main__':
-    unittest.main()
+    # Assert
+    assert isinstance(validator, Validator)
+    assert validator.value == value
+    assert validator.argument_name == argument_name

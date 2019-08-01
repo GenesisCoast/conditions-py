@@ -23,5 +23,6 @@ class ArgumentOutOfRangeError(ArgumentError):
             value,
             argument_name
         )
+        self.equal_to = equal_to
         self.min_value = min_value
         self.max_value = max_value

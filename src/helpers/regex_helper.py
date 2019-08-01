@@ -10,7 +10,7 @@ class RegexHelper:
         """
         Returns `True` or `False` if a regex match has been found in the string.
         """
-        if not re.match(pattern, string, flag):
+        if re.match(pattern, string, flag) is not None:
             return True
         else:
             return False

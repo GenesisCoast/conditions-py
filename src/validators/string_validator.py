@@ -12,19 +12,21 @@ class StringValidator(Validator):
     Contains all the string validation conditions.
     """
 
+    EMPTY_STRING = ''
+
 
     def __init__(self, value: str, argument_name: str):
         """
         Initializes the validator base class with the `value` and `argument_name`.
         """
-        super.__init__(value, argument_name)
+        super().__init__(value, argument_name)
 
 
     def is_null(self) -> StringValidator:
         """
         Checks whether the given value is none (null). An exception is thrown otherwise.
         """
-        if not self.value is None:
+        if self.value is not None:
             raise ArgumentNullError(
                 f'The argument `{self.argument_name}` should be NULL',
                 self.value,
@@ -52,8 +54,8 @@ class StringValidator(Validator):
         """
         Checks whether the given value is none (null) or an empty string. An exception is thrown otherwise.
         """
-        if not self.value is None\
-        or not self.value == "":
+        if self.value is not None\
+        and self.value != self.EMPTY_STRING:
             raise ArgumentError(
                 f'The argument `{self.argument_name}` should be either EMPTY or NULL but was `{self.value}`',
                 self.value,
@@ -67,9 +69,8 @@ class StringValidator(Validator):
         """
         Checks whether the given value is NOT none (null) or NOT an empty string. An exception is thrown otherwise.
         """
-        self.is_not_null()
-
-        if str(super.value) == "":
+        if self.value is None\
+        or self.value == self.EMPTY_STRING:
             raise ArgumentError(
                 f'The argument `{self.argument_name}` should not be EMPTY',
                 self.value,
@@ -84,9 +85,9 @@ class StringValidator(Validator):
         Checks whether the given value is none (null), empty, or consists only of white-space characters.
         An exception is thrown otherwise.
         """
-        self.is_null_or_empty()
-
-        if not str(self.value).isspace():
+        if self.value is not None\
+        and self.value != self.EMPTY_STRING\
+        and not str(self.value).isspace():
             raise ArgumentError(
                 f'The argument `{self.argument_name}` should be NULL or WHITESPACE but was `{self.value}`',
                 self.value,
@@ -99,9 +100,9 @@ class StringValidator(Validator):
         Checks whether the given value is NOT none (null), NOT empty, and does NOT consist only of white-space characters.
         An exception is thrown otherwise.
         """
-        self.is_not_null_or_empty()
-
-        if str(self.value).isspace():
+        if self.value is None\
+        or self.value == self.EMPTY_STRING\
+        or str(self.value).isspace():
             raise ArgumentError(
                 f'The argument `{self.argument_name}` should not have WHITESPACE',
                 self.value,
@@ -116,7 +117,7 @@ class StringValidator(Validator):
         Checks whether the given value is shorter in length, than the specified `max_length`.
         An exception is thrown otherwise.
         """
-        if not len(self.value) < max_length:
+        if len(self.value) >= max_length:
             raise ArgumentError(
                 f'The argument `{self.argument_name}` should be shorter than `{max_length}` but is `{len(self.value)}`',
                 self.value,
@@ -131,7 +132,7 @@ class StringValidator(Validator):
         Checks whether the given value is shorter or equal in length, than the specified `max_length`.
         An exception is thrown otherwise.
         """
-        if not len(self.value) <= max_length:
+        if len(self.value) > max_length:
             raise ArgumentError(
                 f'The argument `{self.argument_name}` should be shorter than or equal to `{max_length}` but is `{len(self.value)}`',
                 self.value,
@@ -146,7 +147,7 @@ class StringValidator(Validator):
         Checks whether the given value is longer in length, than the specified `min_length`.
         An exception is thrown otherwise.
         """
-        if not len(self.value) > min_length:
+        if len(self.value) <= min_length:
             raise ArgumentError(
                 f'The argument `{self.argument_name}` should be longer than `{min_length}` but is `{len(self.value)}`',
                 self.value,
@@ -161,7 +162,7 @@ class StringValidator(Validator):
         Checks whether the given value is longer or equal in length, than the specified `min_length`.
         An exception is thrown otherwise.
         """
-        if not len(self.value) >= min_length:
+        if len(self.value) < min_length:
             raise ArgumentError(
                 f'The argument `{self.argument_name}` should be longer than or equal to `{min_length}` but is `{len(self.value)}`',
                 self.value,
@@ -175,7 +176,7 @@ class StringValidator(Validator):
         """
         Checks whether the given value is equal in length to the specified `length`. An exception is thrown otherwise.
         """
-        if not len(self.value) == length:
+        if len(self.value) != length:
             raise ArgumentError(
                 f'The argument `{self.argument_name}` should have a length of `{length}` but is `{len(self.value)}`',
                 self.value,
@@ -231,7 +232,7 @@ class StringValidator(Validator):
         """
         Checks whether the given value ends with the specified `value`. An exception is thrown otherwise.
         """
-        if not str(self.value).endswith():
+        if not str(self.value).endswith(value):
             raise ArgumentError(
                 f'The argument `{self.argument_name}` should end with `{value}` but was actually `{self.value}`',
                 self.value,
@@ -245,7 +246,7 @@ class StringValidator(Validator):
         """
         Checks whether the given value does not end with the specified `value`. An exception is thrown otherwise.
         """
-        if str(self.value).endswith():
+        if str(self.value).endswith(value):
             raise ArgumentError(
                 f'The argument `{self.argument_name}` should not end with `{value}` but was actually `{self.value}`',
                 self.value,
@@ -259,7 +260,7 @@ class StringValidator(Validator):
         """
         Checks whether the given value contains the specified `value`. An exception is thrown otherwise.
         """
-        if value not in str(self.value):
+        if value not in self.value:
             raise ArgumentError(
                 f'The argument `{self.argument_name}` should contain `{value}` but was actually `{self.value}`',
                 self.value,
@@ -273,7 +274,7 @@ class StringValidator(Validator):
         """
         Checks whether the given value does not contain the specified `value`. An exception is thrown otherwise.
         """
-        if value in str(self.value):
+        if value in self.value:
             raise ArgumentError(
                 f'The argument `{self.argument_name}` should not contain `{value}` but was actually `{self.value}`',
                 self.value,
@@ -302,7 +303,7 @@ class StringValidator(Validator):
         """
         Checks whether the given value does not match the supplied `pattern`. An exception is thrown otherwise.
         """
-        if RegexHelper.is_match(pattern, self.value):
+        if not RegexHelper.is_match(pattern, self.value):
             raise ArgumentPatternError(
                 f'The argument `{self.argument_name}` should match the pattern `{pattern}`',
                 self.value,
