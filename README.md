@@ -26,7 +26,7 @@ Currently this libary is in development with the following items pending:
 
 <br>
 
-## Installation (Pending Publish)
+## Installation
 
 Installation is done via PIP:
 
@@ -43,7 +43,7 @@ Tests are currently written using the Python `unittest` library. To execute test
 ## Usage
 
 ```python
-import conditions-py
+import conditions_py
 
 
 def speak(message: str):
