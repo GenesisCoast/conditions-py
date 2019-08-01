@@ -2,6 +2,8 @@
   <img alt="Image" src="https://i.imgur.com/XSacNPD.png?2"/>
 </p>
 
+![Build Status](https://travis-ci.org/GenesisCoast/conditions-py.svg?branch=master)
+
 # Conditions-PY
 
 Conditions is a Python port of the famous .NET library [Conditions](https://github.com/ghuntley/conditions) which helps developers write pre- and postcondition validations in a fluent manner. Writing these validations is easy and it improves the readability and maintainability of code.
