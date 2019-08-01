@@ -7,7 +7,7 @@ install:
   
 script: 
   - pytest
-  - pytest --cov=conditions-py tests/
+  - coverage run -m pytest
 
 env:
   - CODECOV_TOKEN="a3ea37cf-302f-4eb5-8dbd-fc4cb31e689b"
