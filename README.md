@@ -14,9 +14,7 @@ Conditions is a Python port of the famous .NET library [Conditions](https://gith
 
 Currently this libary is in development with the following items pending:
 
-- Update icon for libary.
 - Finish porting of conditions for all Python datatypes.
-- Add unit testing.
 - Add integration testing.
 - Publish to Python package index.
 
