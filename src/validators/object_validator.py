@@ -92,7 +92,7 @@ class ObjectValidator(Validator):
 
         if isinstance(self.value, type):
             raise ArgumentError(
-                f'The argument `{self.argument_name}` should not be of type `{type.__name__}` but was `{self.value.__name__}`',
+                f'The argument `{self.argument_name}` should not be of type `{type.__name__}` but was `{self.value.__class__.__name__}`',
                 self.value,
                 self.argument_name
             )

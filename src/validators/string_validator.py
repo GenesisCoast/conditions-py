@@ -12,6 +12,7 @@ class StringValidator(Validator):
     Contains all the string validation conditions.
     """
 
+
     EMPTY_STRING = ''
 
 
@@ -93,6 +94,8 @@ class StringValidator(Validator):
                 self.value,
                 self.argument_name
             )
+
+        return self
 
 
     def is_not_null_or_whitespace(self) -> StringValidator:

@@ -1,5 +1,4 @@
 import pytest
-
 from src.errors.argument_error import ArgumentError
 from src.errors.argument_pattern_error import ArgumentPatternError
 from src.errors.argument_null_error import ArgumentNullError
@@ -12,7 +11,8 @@ WHITESPACE_STRING = ' '
 
 def test_is_null_accepts_null_value():
     """
-
+    Tests that the `is_null()` method does not throw an ArgumentError
+    when it is supplied with a None (Null) value.
     """
     # Arrange
     value = None
@@ -28,7 +28,8 @@ def test_is_null_accepts_null_value():
 
 def test_is_null_throws_error_on_whitespace_value():
     """
-
+    Tests that the `is_null()` method throws an ArgumentError
+    when it is supplied with a whitespace value.
     """
     # Arrange
     value = WHITESPACE_STRING
@@ -42,7 +43,8 @@ def test_is_null_throws_error_on_whitespace_value():
 
 def test_is_null_throws_error_on_empty_value():
     """
-
+    Tests that the `is_null()` method does not throw an ArgumentError
+    when it is supplied with an empty value.
     """
     # Arrange
     value = EMPTY_STRING
@@ -64,7 +66,8 @@ def test_is_null_throws_error_on_empty_value():
 )
 def test_is_null_throws_error_on_invalid_value(value: str):
     """
-
+    Tests that the `is_null()` method does not throw an ArgumentError
+    when it is supplied with an invalid value.
     """
     # Arrange
     validator = StringValidator(value, 'value')
@@ -75,9 +78,26 @@ def test_is_null_throws_error_on_invalid_value(value: str):
         validator.is_null()
 
 
+def test_is_null_returns_validator_self():
+    """
+    Tests if the `is_null()` validator method returns itself after the validation is performed,
+    so that additional validations can be performed.
+    """
+    # Arrange
+    value = None
+    validator = StringValidator(value, 'value')
+
+    # Act
+    validator_returned = validator.is_null()
+
+    # Assert
+    assert validator_returned is validator
+
+
 def test_is_not_null_accepts_whitespace_value():
     """
-
+    Tests that the `is_not_null()` method does not throw an ArgumentError
+    when it is supplied with a whitespace value.
     """
     # Arrange
     value = WHITESPACE_STRING
@@ -93,7 +113,8 @@ def test_is_not_null_accepts_whitespace_value():
 
 def test_is_not_null_accepts_empty_value():
     """
-
+    Tests that the `is_not_null()` method does not throw an ArgumentError
+    when it is supplied with a empty value.
     """
     # Arrange
     value = EMPTY_STRING
@@ -117,7 +138,8 @@ def test_is_not_null_accepts_empty_value():
 )
 def test_is_not_null_accepts_valid_value(value: str):
     """
-
+    Tests that the `is_not_null()` method does not throw an ArgumentError
+    when it is supplied with a valid value.
     """
     # Arrange
     validator = StringValidator(value, 'value')
@@ -132,7 +154,8 @@ def test_is_not_null_accepts_valid_value(value: str):
 
 def test_is_not_null_throws_error_on_null_value():
     """
-
+    Tests that the `is_not_null()` method throws an ArgumentError
+    when it is supplied with a None (Null) value.
     """
     # Arrange
     value = None
@@ -144,9 +167,26 @@ def test_is_not_null_throws_error_on_null_value():
         validator.is_not_null()
 
 
+def test_is_not_null_returns_validator_self():
+    """
+    Tests if the `is_not_null()` validator method returns itself after the validation is performed,
+    so that additional validations can be performed.
+    """
+    # Arrange
+    value = 'test'
+    validator = StringValidator(value, 'value')
+
+    # Act
+    validator_returned = validator.is_not_null()
+
+    # Assert
+    assert validator_returned is validator
+
+
 def test_is_null_or_empty_accepts_null_value():
     """
-
+    Tests that the `is_null_or_empty()` method does not throw an ArgumentError
+    when it is supplied with a None (Null) value.
     """
     # Arrange
     value = None
@@ -162,7 +202,8 @@ def test_is_null_or_empty_accepts_null_value():
 
 def test_is_null_or_empty_accepts_empty_value():
     """
-
+    Tests that the `is_null_or_empty()` method does not throw an ArgumentError
+    when it is supplied with a empty value.
     """
     # Arrange
     value = EMPTY_STRING
@@ -178,7 +219,8 @@ def test_is_null_or_empty_accepts_empty_value():
 
 def test_is_null_or_empty_throws_error_on_whitespace_value():
     """
-
+    Tests that the `is_null_or_empty()` method throws an ArgumentError
+    when it is supplied with a whitespace value.
     """
     # Arrange
     value = WHITESPACE_STRING
@@ -200,7 +242,8 @@ def test_is_null_or_empty_throws_error_on_whitespace_value():
 )
 def test_is_null_or_empty_throws_error_on_invalid_value(value: str):
     """
-
+    Tests that the `is_null_or_empty()` method throws an ArgumentError
+    when it is supplied with an invalid value.
     """
     # Arrange
     validator = StringValidator(value, 'value')
@@ -211,9 +254,26 @@ def test_is_null_or_empty_throws_error_on_invalid_value(value: str):
         validator.is_null_or_empty()
 
 
+def test_is_null_or_empty_returns_validator_self():
+    """
+    Tests if the `is_null_or_empty()` validator method returns itself after the validation is performed,
+    so that additional validations can be performed.
+    """
+    # Arrange
+    value = EMPTY_STRING
+    validator = StringValidator(value, 'value')
+
+    # Act
+    validator_returned = validator.is_null_or_empty()
+
+    # Assert
+    assert validator_returned is validator
+
+
 def test_is_not_null_or_empty_accepts_whitespace_value():
     """
-
+    Tests that the `is_not_null_or_empty()` method does not throw an ArgumentError
+    when it is supplied with a whitespace value.
     """
     # Arrange
     value = WHITESPACE_STRING
@@ -227,7 +287,6 @@ def test_is_not_null_or_empty_accepts_whitespace_value():
         pytest.fail(f'`{value}` should not have been None (Null) or empty, but an error occurred instead.')
 
 
-
 @pytest.mark.parametrize(
     'value',
     [
@@ -238,7 +297,8 @@ def test_is_not_null_or_empty_accepts_whitespace_value():
 )
 def test_is_not_null_or_empty_accepts_valid_value(value: str):
     """
-
+    Tests that the `is_not_null_or_empty()` method does not throw an ArgumentError
+    when it is supplied with a valid value.
     """
     # Arrange
     validator = StringValidator(value, 'value')
@@ -253,7 +313,8 @@ def test_is_not_null_or_empty_accepts_valid_value(value: str):
 
 def test_is_not_null_or_empty_throw_error_on_null_value():
     """
-
+    Tests that the `is_not_null_or_empty()` method throws an ArgumentError
+    when it is supplied with a None (Null) value.
     """
     # Arrange
     value = None
@@ -267,7 +328,8 @@ def test_is_not_null_or_empty_throw_error_on_null_value():
 
 def test_is_not_null_or_empty_throw_error_on_empty_value():
     """
-
+    Tests that the `is_not_null_or_empty()` method throws an ArgumentError
+    when it is supplied with a empty value.
     """
     # Arrange
     value = EMPTY_STRING
@@ -279,10 +341,26 @@ def test_is_not_null_or_empty_throw_error_on_empty_value():
         validator.is_not_null_or_empty()
 
 
+def test_is_not_null_or_empty_returns_validator_self():
+    """
+    Tests if the `is_not_null_or_empty()` validator method returns itself after the validation is performed,
+    so that additional validations can be performed.
+    """
+    # Arrange
+    value = 'test'
+    validator = StringValidator(value, 'value')
+
+    # Act
+    validator_returned = validator.is_not_null_or_empty()
+
+    # Assert
+    assert validator_returned is validator
+
 
 def test_is_null_or_whitespace_accepts_null_value():
     """
-
+    Tests that the `is_not_null_or_whitespace()` method does not throw an ArgumentError
+    when it is supplied with a None (Null) value.
     """
     # Arrange
     value = None
@@ -298,7 +376,8 @@ def test_is_null_or_whitespace_accepts_null_value():
 
 def test_is_null_or_whitespace_accepts_empty_value():
     """
-
+    Tests that the `is_not_null_or_whitespace()` method does not throw an ArgumentError
+    when it is supplied with a empty value.
     """
     # Arrange
     value = EMPTY_STRING
@@ -314,7 +393,8 @@ def test_is_null_or_whitespace_accepts_empty_value():
 
 def test_is_null_or_whitespace_accepts_whitespace_value():
     """
-
+    Tests that the `is_not_null_or_whitespace()` method does not throw an ArgumentError
+    when it is supplied with a whitespace value.
     """
     # Arrange
     value = WHITESPACE_STRING
@@ -338,7 +418,8 @@ def test_is_null_or_whitespace_accepts_whitespace_value():
 )
 def test_is_null_or_whitespace_throws_error_on_invalid_value(value: str):
     """
-
+    Tests that the `is_not_null_or_whitespace()` method throws an ArgumentError
+    when it is supplied with an invalid value.
     """
     # Arrange
     validator = StringValidator(value, 'value')
@@ -347,6 +428,22 @@ def test_is_null_or_whitespace_throws_error_on_invalid_value(value: str):
     with pytest.raises(ArgumentError):
         # Act
         validator.is_null_or_whitespace()
+
+
+def test_is_null_or_whitespace_returns_validator_self():
+    """
+    Tests if the `is_null_or_whitespace()` validator method returns itself after the validation is performed,
+    so that additional validations can be performed.
+    """
+    # Arrange
+    value = WHITESPACE_STRING
+    validator = StringValidator(value, 'value')
+
+    # Act
+    validator_returned = validator.is_null_or_whitespace()
+
+    # Assert
+    assert validator_returned is validator
 
 
 @pytest.mark.parametrize(
@@ -359,7 +456,8 @@ def test_is_null_or_whitespace_throws_error_on_invalid_value(value: str):
 )
 def test_is_not_null_or_whitespace_accepts_valid_value(value: str):
     """
-
+    Tests that the `is_not_null_or_whitespace()` method does not throw an ArgumentError
+    when it is supplied with a valid value.
     """
     # Arrange
     validator = StringValidator(value, 'value')
@@ -374,7 +472,8 @@ def test_is_not_null_or_whitespace_accepts_valid_value(value: str):
 
 def test_is_not_null_or_whitespace_throws_error_on_whitespace_value():
     """
-
+    Tests that the `is_not_null_or_whitespace()` method throws an ArgumentError
+    when it is supplied with a whitespace value.
     """
     # Arrange
     value = WHITESPACE_STRING
@@ -388,7 +487,8 @@ def test_is_not_null_or_whitespace_throws_error_on_whitespace_value():
 
 def test_is_not_null_or_whitespace_throw_error_on_null_value():
     """
-
+    Tests that the `is_not_null_or_whitespace()` method throws an ArgumentError
+    when it is supplied with a None (Null) value.
     """
     # Arrange
     value = None
@@ -402,7 +502,8 @@ def test_is_not_null_or_whitespace_throw_error_on_null_value():
 
 def test_is_not_null_or_whitespace_throw_error_on_empty_value():
     """
-
+    Tests that the `is_not_null_or_whitespace()` method throws an ArgumentError
+    when it is supplied with a whitespace value.
     """
     # Arrange
     value = EMPTY_STRING
@@ -414,6 +515,22 @@ def test_is_not_null_or_whitespace_throw_error_on_empty_value():
         validator.is_not_null_or_whitespace()
 
 
+def test_is_not_null_or_whitespace_returns_validator_self():
+    """
+    Tests if the `is_not_null_or_whitespace()` validator method returns itself after the validation is performed,
+    so that additional validations can be performed.
+    """
+    # Arrange
+    value = 'test'
+    validator = StringValidator(value, 'value')
+
+    # Act
+    validator_returned = validator.is_not_null_or_whitespace()
+
+    # Assert
+    assert validator_returned is validator
+
+
 @pytest.mark.parametrize(
     'value,max_length',
     [
@@ -422,9 +539,10 @@ def test_is_not_null_or_whitespace_throw_error_on_empty_value():
         ('this_is_my_value', 20)
     ]
 )
-def test_is_shorter_than_accepts_shorted_length(value: str, max_length: int):
+def test_is_shorter_than_accepts_shorter_length(value: str, max_length: int):
     """
-
+    Tests that the `is_shorter_than()` method does not throw an ArgumentError
+    when it is supplied with a shorter length.
     """
     # Arrange
     validator = StringValidator(value, 'value')
@@ -447,7 +565,8 @@ def test_is_shorter_than_accepts_shorted_length(value: str, max_length: int):
 )
 def test_is_shorter_than_throws_error_on_longer_length(value: str, max_length: int):
     """
-
+    Tests that the `is_shorter_than()` method throws an ArgumentError
+    when it is supplied with a longer length.
     """
     # Arrange
     validator = StringValidator(value, 'value')
@@ -468,7 +587,8 @@ def test_is_shorter_than_throws_error_on_longer_length(value: str, max_length: i
 )
 def test_is_shorter_than_throws_error_on_equal_length(value: str, max_length: int):
     """
-
+    Tests that the `is_shorter_than()` method throws an ArgumentError
+    when it is supplied with a equal length.
     """
     # Arrange
     validator = StringValidator(value, 'value')
@@ -477,6 +597,23 @@ def test_is_shorter_than_throws_error_on_equal_length(value: str, max_length: in
     with pytest.raises(ArgumentError):
         # Act
         validator.is_shorter_than(max_length)
+
+
+def test_is_shorter_than_returns_validator_self():
+    """
+    Tests if the `is_shorter_than()` validator method returns itself after the validation is performed,
+    so that additional validations can be performed.
+    """
+    # Arrange
+    value = 'test'
+    max_length = 10
+    validator = StringValidator(value, 'value')
+
+    # Act
+    validator_returned = validator.is_shorter_than(max_length)
+
+    # Assert
+    assert validator_returned is validator
 
 
 @pytest.mark.parametrize(
@@ -489,7 +626,8 @@ def test_is_shorter_than_throws_error_on_equal_length(value: str, max_length: in
 )
 def test_is_shorter_or_equal_accepts_shorter_length(value: str, max_length: int):
     """
-
+    Tests that the `is_shorter_or_equal()` method does not throw an ArgumentError
+    when it is supplied with a shorter length.
     """
     # Arrange
     validator = StringValidator(value, 'value')
@@ -512,7 +650,8 @@ def test_is_shorter_or_equal_accepts_shorter_length(value: str, max_length: int)
 )
 def test_is_shorter_or_equal_accepts_equal_length(value: str, max_length: int):
     """
-
+    Tests that the `is_shorter_or_equal()` method does not throw an ArgumentError
+    when it is supplied with a equal length.
     """
     # Arrange
     validator = StringValidator(value, 'value')
@@ -535,7 +674,8 @@ def test_is_shorter_or_equal_accepts_equal_length(value: str, max_length: int):
 )
 def test_is_shorter_or_equal_throws_error_on_longer_length(value: str, max_length: int):
     """
-
+    Tests that the `is_shorter_or_equal()` method throws an ArgumentError
+    when it is supplied with a longer length.
     """
     # Arrange
     validator = StringValidator(value, 'value')
@@ -544,6 +684,23 @@ def test_is_shorter_or_equal_throws_error_on_longer_length(value: str, max_lengt
     with pytest.raises(ArgumentError):
         # Act
         validator.is_shorter_or_equal(max_length)
+
+
+def test_is_shorter_or_equal_returns_validator_self():
+    """
+    Tests if the `is_shorter_or_equal()` validator method returns itself after the validation is performed,
+	so that additional validations can be performed.
+    """
+    # Arrange
+    value = 'test'
+    max_length = 10
+    validator = StringValidator(value, 'value')
+
+    # Act
+    validator_returned = validator.is_shorter_or_equal(max_length)
+
+    # Assert
+    assert validator_returned is validator
 
 
 @pytest.mark.parametrize(
@@ -556,7 +713,8 @@ def test_is_shorter_or_equal_throws_error_on_longer_length(value: str, max_lengt
 )
 def test_is_longer_than_accepts_longer_length(value: str, min_length: int):
     """
-
+    Tests that the `is_longer_than()` method does not throw an ArgumentError
+    when it is supplied with a longer length.
     """
     # Arrange
     validator = StringValidator(value, 'value')
@@ -579,7 +737,8 @@ def test_is_longer_than_accepts_longer_length(value: str, min_length: int):
 )
 def test_is_longer_than_throws_error_on_equal_length(value: str, min_length: int):
     """
-
+    Tests that the `is_longer_than()` method throws an ArgumentError
+    when it is supplied with a equal length.
     """
     # Arrange
     validator = StringValidator(value, 'value')
@@ -600,7 +759,8 @@ def test_is_longer_than_throws_error_on_equal_length(value: str, min_length: int
 )
 def test_is_longer_than_throws_error_on_shorter_length(value: str, min_length: int):
     """
-
+    Tests that the `is_longer_than()` method throws an ArgumentError
+    when it is supplied with a shorter length.
     """
     # Arrange
     validator = StringValidator(value, 'value')
@@ -609,6 +769,23 @@ def test_is_longer_than_throws_error_on_shorter_length(value: str, min_length: i
     with pytest.raises(ArgumentError):
         # Act
         validator.is_longer_than(min_length)
+
+
+def test_is_longer_than_returns_validator_self():
+    """
+    Tests if the `is_longer_than()` validator method returns itself after the validation is performed,
+    so that additional validations can be performed.
+    """
+    # Arrange
+    value = 'test'
+    min_length = 2
+    validator = StringValidator(value, 'value')
+
+    # Act
+    validator_returned = validator.is_longer_than(min_length)
+
+    # Assert
+    assert validator_returned is validator
 
 
 @pytest.mark.parametrize(
@@ -621,7 +798,8 @@ def test_is_longer_than_throws_error_on_shorter_length(value: str, min_length: i
 )
 def test_is_longer_or_equal_accepts_longer_length(value: str, min_length: int):
     """
-
+    Tests that the `is_longer_or_equal()` method does not throw an ArgumentError
+    when it is supplied with a longer length.
     """
     # Arrange
     validator = StringValidator(value, 'value')
@@ -644,7 +822,8 @@ def test_is_longer_or_equal_accepts_longer_length(value: str, min_length: int):
 )
 def test_is_longer_or_equal_accepts_equal_length(value: str, min_length: int):
     """
-
+    Tests that the `is_longer_or_equal()` method does not throw an ArgumentError
+    when it is supplied with a equal length.
     """
     # Arrange
     validator = StringValidator(value, 'value')
@@ -667,7 +846,8 @@ def test_is_longer_or_equal_accepts_equal_length(value: str, min_length: int):
 )
 def test_is_longer_or_equal_throws_error_on_shorter_length(value: str, min_length: int):
     """
-
+    Tests that the `is_longer_or_equal()` method throws an ArgumentError
+    when it is supplied with a shorter length.
     """
     # Arrange
     validator = StringValidator(value, 'value')
@@ -676,6 +856,23 @@ def test_is_longer_or_equal_throws_error_on_shorter_length(value: str, min_lengt
     with pytest.raises(ArgumentError):
         # Act
         validator.is_longer_or_equal(min_length)
+
+
+def test_is_longer_or_equal_returns_validator_self():
+    """
+    Tests if the `is_longer_or_equal()` validator method returns itself after the validation is performed,
+    so that additional validations can be performed.
+    """
+    # Arrange
+    value = 'test'
+    min_length = 2
+    validator = StringValidator(value, 'value')
+
+    # Act
+    validator_returned = validator.is_longer_or_equal(min_length)
+
+    # Assert
+    assert validator_returned is validator
 
 
 @pytest.mark.parametrize(
@@ -688,7 +885,8 @@ def test_is_longer_or_equal_throws_error_on_shorter_length(value: str, min_lengt
 )
 def test_has_length_accepts_equal_length(value: str, length: int):
     """
-
+    Tests that the `has_length()` method does not throw an ArgumentError
+    when it is supplied with a equal length.
     """
     # Arrange
     validator = StringValidator(value, 'value')
@@ -711,7 +909,8 @@ def test_has_length_accepts_equal_length(value: str, length: int):
 )
 def test_has_length_throws_error_on_notequal_length(value: str, length: int):
     """
-
+    Tests that the `has_length()` method throws an ArgumentError
+    when it is supplied with a not equal length.
     """
     # Arrange
     validator = StringValidator(value, 'value')
@@ -720,6 +919,23 @@ def test_has_length_throws_error_on_notequal_length(value: str, length: int):
     with pytest.raises(ArgumentError):
         # Act
         validator.has_length(length)
+
+
+def test_has_length_returns_validator_self():
+    """
+    Tests if the `has_length()` validator method returns itself after the validation is performed,
+    so that additional validations can be performed.
+    """
+    # Arrange
+    value = 'test'
+    length = 4
+    validator = StringValidator(value, 'value')
+
+    # Act
+    validator_returned = validator.has_length(length)
+
+    # Assert
+    assert validator_returned is validator
 
 
 @pytest.mark.parametrize(
@@ -732,7 +948,8 @@ def test_has_length_throws_error_on_notequal_length(value: str, length: int):
 )
 def test_does_not_have_length_throws_error_on_equal_length(value: str, length: int):
     """
-
+    Tests that the `does_not_have_length()` method throws an ArgumentError
+    when it is supplied with a equal length.
     """
     # Arrange
     validator = StringValidator(value, 'value')
@@ -753,7 +970,8 @@ def test_does_not_have_length_throws_error_on_equal_length(value: str, length: i
 )
 def test_does_not_have_length_accepts_notequal_length(value: str, length: int):
     """
-
+    Tests that the `does_not_have_length()` method does not throw an ArgumentError
+    when it is supplied with a not equal length.
     """
     # Arrange
     validator = StringValidator(value, 'value')
@@ -766,6 +984,23 @@ def test_does_not_have_length_accepts_notequal_length(value: str, length: int):
         pytest.fail(f'`{value}` should not have the length `{length}`, but an error occurred.')
 
 
+def test_does_not_have_length_returns_validator_self():
+    """
+    Tests if the `does_not_have_length()` validator method returns itself after the validation is performed,
+    so that additional validations can be performed.
+    """
+    # Arrange
+    value = 'test'
+    length = 10
+    validator = StringValidator(value, 'value')
+
+    # Act
+    validator_returned = validator.does_not_have_length(length)
+
+    # Assert
+    assert validator_returned is validator
+
+
 @pytest.mark.parametrize(
     'value,starts_with',
     [
@@ -776,7 +1011,8 @@ def test_does_not_have_length_accepts_notequal_length(value: str, length: int):
 )
 def test_starts_with_accepts_valid_value(value: str, starts_with: str):
     """
-
+    Tests that the `starts_with()` method does not throw an ArgumentError
+    when the value starts with the specified value.
     """
     # Arrange
     validator = StringValidator(value, 'value')
@@ -799,7 +1035,8 @@ def test_starts_with_accepts_valid_value(value: str, starts_with: str):
 )
 def test_starts_with_throws_error_on_invalid_value(value: str, starts_with: str):
     """
-
+    Tests that the `starts_with()` method throws an ArgumentError
+    when the value does not start with the specified value.
     """
     # Arrange
     validator = StringValidator(value, 'value')
@@ -808,6 +1045,23 @@ def test_starts_with_throws_error_on_invalid_value(value: str, starts_with: str)
     with pytest.raises(ArgumentError):
         # Act
         validator.starts_with(starts_with)
+
+
+def test_starts_with_returns_validator_self():
+    """
+    Tests if the `starts_with()` validator method returns itself after the validation is performed,
+    so that additional validations can be performed.
+    """
+    # Arrange
+    value = 'Hello World'
+    starts_with = 'Hello'
+    validator = StringValidator(value, 'value')
+
+    # Act
+    validator_returned = validator.starts_with(starts_with)
+
+    # Assert
+    assert validator_returned is validator
 
 
 @pytest.mark.parametrize(
@@ -820,7 +1074,8 @@ def test_starts_with_throws_error_on_invalid_value(value: str, starts_with: str)
 )
 def test_does_not_start_with_throws_error_on_invalid_value(value: str, starts_with: str):
     """
-
+    Tests that the `does_not_start_with()` method throws an ArgumentError
+    when the value starts with the specified value.
     """
     # Arrange
     validator = StringValidator(value, 'value')
@@ -841,7 +1096,8 @@ def test_does_not_start_with_throws_error_on_invalid_value(value: str, starts_wi
 )
 def test_does_not_start_with_accepts_valid_value(value: str, starts_with: str):
     """
-
+    Tests that the `does_not_start_with()` method does not throw an ArgumentError
+    when the value does not start with the specified value.
     """
     # Arrange
     validator = StringValidator(value, 'value')
@@ -854,6 +1110,23 @@ def test_does_not_start_with_accepts_valid_value(value: str, starts_with: str):
         pytest.fail(f'`{value}` should not start with `{starts_with}`, but an error occurred.')
 
 
+def test_does_not_start_with_returns_validator_self():
+    """
+    Tests if the `does_not_start_with()` validator method returns itself after the validation is performed,
+    so that additional validations can be performed.
+    """
+    # Arrange
+    value = '1234'
+    starts_with = 'test'
+    validator = StringValidator(value, 'value')
+
+    # Act
+    validator_returned = validator.does_not_start_with(starts_with)
+
+    # Assert
+    assert validator_returned is validator
+
+
 @pytest.mark.parametrize(
     'value,ends_with',
     [
@@ -864,7 +1137,8 @@ def test_does_not_start_with_accepts_valid_value(value: str, starts_with: str):
 )
 def test_ends_with_accepts_valid_value(value: str, ends_with: str):
     """
-
+    Tests that the `ends_with()` method does not throw an ArgumentError
+    when the value ends with the specified value.
     """
     # Arrange
     validator = StringValidator(value, 'value')
@@ -887,7 +1161,8 @@ def test_ends_with_accepts_valid_value(value: str, ends_with: str):
 )
 def test_ends_with_throws_error_on_invalid_value(value: str, ends_with: str):
     """
-
+    Tests that the `ends_with()` method throws an ArgumentError
+    when the value does not end with the specified value.
     """
     # Arrange
     validator = StringValidator(value, 'value')
@@ -896,6 +1171,23 @@ def test_ends_with_throws_error_on_invalid_value(value: str, ends_with: str):
     with pytest.raises(ArgumentError):
         # Act
         validator.ends_with(ends_with)
+
+
+def test_ends_with_returns_validator_self():
+    """
+    Tests if the `ends_with()` validator method returns itself after the validation is performed,
+    so that additional validations can be performed.
+    """
+    # Arrange
+    value = 'Hello World'
+    ends_with = 'World'
+    validator = StringValidator(value, 'value')
+
+    # Act
+    validator_returned = validator.ends_with(ends_with)
+
+    # Assert
+    assert validator_returned is validator
 
 
 @pytest.mark.parametrize(
@@ -908,7 +1200,8 @@ def test_ends_with_throws_error_on_invalid_value(value: str, ends_with: str):
 )
 def test_does_not_end_with_throws_error_on_invalid_value(value: str, ends_with: str):
     """
-
+    Tests that the `does_not_end_with()` method throws an ArgumentError
+    when the value ends with the specified value.
     """
     # Arrange
     validator = StringValidator(value, 'value')
@@ -929,7 +1222,8 @@ def test_does_not_end_with_throws_error_on_invalid_value(value: str, ends_with: 
 )
 def test_does_not_end_with_accepts_valid_value(value: str, ends_with: str):
     """
-
+    Tests that the `does_not_end_with()` method does not throw an ArgumentError
+    when the value does not end with the specified value.
     """
     # Arrange
     validator = StringValidator(value, 'value')
@@ -942,6 +1236,23 @@ def test_does_not_end_with_accepts_valid_value(value: str, ends_with: str):
         pytest.fail(f'`{value}` should not end with `{ends_with}`, but an error occurred.')
 
 
+def test_does_not_end_with_returns_validator_self():
+    """
+    Tests if the `does_not_end_with()` validator method returns itself after the validation is performed,
+    so that additional validations can be performed.
+    """
+    # Arrange
+    value = 'Hello World'
+    ends_with = 'Hello'
+    validator = StringValidator(value, 'value')
+
+    # Act
+    validator_returned = validator.does_not_end_with(ends_with)
+
+    # Assert
+    assert validator_returned is validator
+
+
 @pytest.mark.parametrize(
     'value,contains',
     [
@@ -952,7 +1263,8 @@ def test_does_not_end_with_accepts_valid_value(value: str, ends_with: str):
 )
 def test_contains_accepts_valid_value(value: str, contains: str):
     """
-
+    Tests that the `contains()` method does not throw an ArgumentError
+    when the value does contains specified value.
     """
     # Arrange
     validator = StringValidator(value, 'value')
@@ -975,7 +1287,8 @@ def test_contains_accepts_valid_value(value: str, contains: str):
 )
 def test_contains_throw_error_on_invalid_value(value: str, contains: str):
     """
-
+    Tests that the `contains()` method throws an ArgumentError
+    when the value does not contain specified value.
     """
     # Arrange
     validator = StringValidator(value, 'value')
@@ -984,6 +1297,23 @@ def test_contains_throw_error_on_invalid_value(value: str, contains: str):
     with pytest.raises(ArgumentError):
         # Act
         validator.contains(contains)
+
+
+def test_contains_returns_validator_self():
+    """
+    Tests if the `contains()` validator method returns itself after the validation is performed,
+    so that additional validations can be performed.
+    """
+    # Arrange
+    value = 'Hello World'
+    contains = 'ello'
+    validator = StringValidator(value, 'value')
+
+    # Act
+    validator_returned = validator.contains(contains)
+
+    # Assert
+    assert validator_returned is validator
 
 
 @pytest.mark.parametrize(
@@ -996,7 +1326,8 @@ def test_contains_throw_error_on_invalid_value(value: str, contains: str):
 )
 def test_does_not_contain_throw_error_on_invalid_value(value: str, contains: str):
     """
-
+    Tests that the `does_not_contain()` method throws an ArgumentError
+    when the value contains specified value.
     """
     # Arrange
     validator = StringValidator(value, 'value')
@@ -1017,7 +1348,8 @@ def test_does_not_contain_throw_error_on_invalid_value(value: str, contains: str
 )
 def test_does_not_contain_accepts_valid_value(value: str, contains: str):
     """
-
+    Tests that the `does_not_contain()` method does not throw an ArgumentError
+    when the value does not contain specified value.
     """
     # Arrange
     validator = StringValidator(value, 'value')
@@ -1030,6 +1362,23 @@ def test_does_not_contain_accepts_valid_value(value: str, contains: str):
         pytest.fail(f'`{value}` should not contain `{contains}`, but an error occurred.')
 
 
+def test_does_not_contain_returns_validator_self():
+    """
+    Tests if the `does_not_contain()` validator method returns itself after the validation is performed,
+	so that additional validations can be performed.
+    """
+    # Arrange
+    value = 'Hello World'
+    contains = 'test'
+    validator = StringValidator(value, 'value')
+
+    # Act
+    validator_returned = validator.does_not_contain(contains)
+
+    # Assert
+    assert validator_returned is validator
+
+
 @pytest.mark.parametrize(
     'value,pattern',
     [
@@ -1040,7 +1389,8 @@ def test_does_not_contain_accepts_valid_value(value: str, contains: str):
 )
 def test_is_regex_match_accepts_matching_pattern(value: str, pattern: str):
     """
-
+    Tests that the `is_regex_match()` method does not throw an ArgumentError
+    when the value matches the specified pattern.
     """
     # Arrange
     validator = StringValidator(value, 'value')
@@ -1063,7 +1413,8 @@ def test_is_regex_match_accepts_matching_pattern(value: str, pattern: str):
 )
 def test_is_regex_match_throws_error_on_not_matching_pattern(value: str, pattern: str):
     """
-
+    Tests that the `is_regex_match()` method throws an ArgumentError
+    when the value does not match the specified pattern.
     """
     # Arrange
     validator = StringValidator(value, 'value')
@@ -1076,6 +1427,22 @@ def test_is_regex_match_throws_error_on_not_matching_pattern(value: str, pattern
         pytest.fail(f'`{value}` should match the pattern `{pattern}`, but an error occurred.')
 
 
+def test_is_regex_match_returns_validator_self():
+    """
+    Tests if the `is_regex_match()` validator method returns itself after the validation is performed,
+    so that additional validations can be performed.
+    """
+    # Arrange
+    value = '1234'
+    pattern = r'\w+'
+    validator = StringValidator(value, 'value')
+
+    # Act
+    validator_returned = validator.is_regex_match(pattern)
+
+    # Assert
+    assert validator_returned is validator
+
 
 @pytest.mark.parametrize(
     'value,pattern',
@@ -1087,7 +1454,8 @@ def test_is_regex_match_throws_error_on_not_matching_pattern(value: str, pattern
 )
 def test_is_not_regex_match_accepts_not_matching_pattern(value: str, pattern: str):
     """
-
+    Tests that the `is_not_regex_match()` method does not throw an ArgumentError
+    when the value does not match the specified pattern.
     """
     # Arrange
     validator = StringValidator(value, 'value')
@@ -1110,7 +1478,8 @@ def test_is_not_regex_match_accepts_not_matching_pattern(value: str, pattern: st
 )
 def test_is_not_regex_match_throws_error_on_matching_pattern(value: str, pattern: str):
     """
-
+    Tests that the `is_not_regex_match()` method throws an ArgumentError
+    when the value matches the specified pattern.
     """
     # Arrange
     validator = StringValidator(value, 'value')
@@ -1121,3 +1490,20 @@ def test_is_not_regex_match_throws_error_on_matching_pattern(value: str, pattern
     # Assert
     except ArgumentPatternError:
         pytest.fail(f'`{value}` should match the pattern `{pattern}`, but an error occurred.')
+
+
+def test_is_not_regex_match_returns_validator_self():
+    """
+    Tests if the `is_not_regex_match()` validator method returns itself after the validation is performed,
+    so that additional validations can be performed.
+    """
+    # Arrange
+    value = '1234'
+    pattern = r'\w+'
+    validator = StringValidator(value, 'value')
+
+    # Act
+    validator_returned = validator.is_not_regex_match(pattern)
+
+    # Assert
+    assert validator_returned is validator

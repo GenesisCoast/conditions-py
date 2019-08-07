@@ -13,7 +13,7 @@ from src.validators.validator import Validator
 )
 def test_constructor_initializes_validator(value, argument_name):
     """
-
+    Tests that the base validator initializes the validator with the correct value.
     """
     # Arrange / Act
     validator = Validator(value, argument_name)
