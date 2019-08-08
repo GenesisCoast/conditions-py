@@ -20,7 +20,8 @@ number = TypeVar('number', int, float)
 )
 def test_requires_returns_boolean_validator(value: bool):
     """
-
+    Tests if the `Condition.requires()` method returns the validator that is appropriate to
+    the boolean datatype.
     """
     # Act
     validator = Condition.requires(value, 'value')
@@ -40,7 +41,8 @@ def test_requires_returns_boolean_validator(value: bool):
 )
 def test_requires_returns_number_validator(value: number):
     """
-
+    Tests if the `Condition.requires()` method returns the validator that is appropriate to
+    the number (float, int) datatype.
     """
     # Act
     validator = Condition.requires(value, 'value')
@@ -51,7 +53,8 @@ def test_requires_returns_number_validator(value: number):
 
 def test_requires_returns_object_validator():
     """
-
+    Tests if the `Condition.requires()` method returns the validator that is appropriate to
+    the object datatype.
     """
     # Arrange
     obj = TypeExample()
@@ -72,10 +75,11 @@ def test_requires_returns_object_validator():
 )
 def test_requires_returns_string_validator(value: str):
     """
-
+    Tests if the `Condition.requires_str()` method returns the validator that is appropriate to
+    the string datatype.
     """
     # Act
-    validator = Condition.requires(value, 'value')
+    validator = Condition.requires_str(value, 'value')
 
     # Assert
     assert isinstance(validator, StringValidator)

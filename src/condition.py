@@ -6,24 +6,42 @@ from .validators.number_validator import NumberValidator
 from .validators.boolean_validator import BooleanValidator
 
 
-TValidator = TypeVar('TValidator', StringValidator, ObjectValidator, NumberValidator)
+number = TypeVar('number', int, float)
 
 
-class Condition(Generic[TValidator]):
+class Condition:
     """
     Base condition class to create the validator which corresponds to the value type.
     """
 
+
     @staticmethod
-    def requires(value: object, argument_name: str) -> TValidator:
+    def requires_obj(value: object, argument_name: str) -> ObjectValidator:
         """
-        Initializes the conditions framework with the correct value_type validator.
+        Initializes the conditions framework using the `number (float, int)` validator.
         """
-        if type(value) is str:
-            return StringValidator(value, argument_name)
-        elif type(value) is int or type(value) is float:
-            return NumberValidator(value, argument_name)
-        elif type(value) is bool:
-            return BooleanValidator(value, argument_name)
-        else:
-            return ObjectValidator(value, argument_name)
+        return ObjectValidator(value, argument_name)
+
+
+    @staticmethod
+    def requires_num(value: number, argument_name: str) -> NumberValidator:
+        """
+        Initializes the conditions framework using the `number (float, int)` validator.
+        """
+        return NumberValidator(value, argument_name)
+
+
+    @staticmethod
+    def requires_bool(value: bool, argument_name: str) -> BooleanValidator:
+        """
+        Initializes the conditions framework using the `boolean` validator.
+        """
+        return BooleanValidator(value, argument_name)
+
+
+    @staticmethod
+    def requires_str(value: object, argument_name: str) -> StringValidator:
+        """
+        Initializes the conditions framework using the `string` validator.
+        """
+        return StringValidator(value, argument_name)
