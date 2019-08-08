@@ -52,7 +52,6 @@ def multiple(left: int, right: int):
         .requires_num(right, 'right')\
         .is_greater_than(4)
         
-
     # Do multiplication
     
     
