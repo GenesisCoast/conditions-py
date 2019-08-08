@@ -23,7 +23,7 @@ Installation is done via PIP:
 
 ## Conditions
 
-A full list of all the available conditions can be found in the Wiki.
+A full list of all the available conditions can be found in the [Wiki](https://github.com/GenesisCoast/conditions-py/wiki).
 
 ## Tests
 
