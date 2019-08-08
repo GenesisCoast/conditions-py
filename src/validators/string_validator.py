@@ -306,7 +306,7 @@ class StringValidator(Validator):
         """
         Checks whether the given value does not match the supplied `pattern`. An exception is thrown otherwise.
         """
-        if not RegexHelper.is_match(pattern, self.value):
+        if RegexHelper.is_match(pattern, self.value):
             raise ArgumentPatternError(
                 f'The argument `{self.argument_name}` should match the pattern `{pattern}`',
                 self.value,

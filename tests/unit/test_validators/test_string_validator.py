@@ -1382,14 +1382,14 @@ def test_does_not_contain_returns_validator_self():
 @pytest.mark.parametrize(
     'value,pattern',
     [
-        ('1234', r'\d+'),
-        ('test', r'\w+'),
-        ('this_is_my_value', r'[a-z_]+')
+        ('1234', r'^\d+$'),
+        ('test', r'^\w+$'),
+        ('this_is_my_value', r'^[a-z_]+$')
     ]
 )
 def test_is_regex_match_accepts_matching_pattern(value: str, pattern: str):
     """
-    Tests that the `is_regex_match()` method does not throw an ArgumentError
+    Tests that the `is_regex_match()` method does not throw an ArgumentPatternError
     when the value matches the specified pattern.
     """
     # Arrange
@@ -1406,25 +1406,23 @@ def test_is_regex_match_accepts_matching_pattern(value: str, pattern: str):
 @pytest.mark.parametrize(
     'value,pattern',
     [
-        # ('test', r'\d+'),
-        ('1234', r'\w+'),
-        ('this-is-my-value', r'[a-z_]+')
+        ('test', r'^\d+$'),
+        ('1234', r'^[a-z]+$'),
+        ('this-is-my-value', r'^[a-z_]+$')
     ]
 )
 def test_is_regex_match_throws_error_on_not_matching_pattern(value: str, pattern: str):
     """
-    Tests that the `is_regex_match()` method throws an ArgumentError
+    Tests that the `is_regex_match()` method throws an ArgumentPatternError
     when the value does not match the specified pattern.
     """
     # Arrange
     validator = StringValidator(value, 'value')
 
-    # Act
-    try:
-        validator.is_regex_match(pattern)
     # Assert
-    except ArgumentPatternError:
-        pytest.fail(f'`{value}` should match the pattern `{pattern}`, but an error occurred.')
+    with pytest.raises(ArgumentPatternError):
+        # Act
+        validator.is_regex_match(pattern)
 
 
 def test_is_regex_match_returns_validator_self():
@@ -1447,14 +1445,14 @@ def test_is_regex_match_returns_validator_self():
 @pytest.mark.parametrize(
     'value,pattern',
     [
-        # ('test', r'\d+'),
-        ('1234', r'\w+'),
-        ('this-is-my-value', r'[a-z_]+')
+        ('test', r'^\d+$'),
+        ('1234', r'^[a-z]+$'),
+        ('this-is-my-value', r'^[a-z_]+$')
     ]
 )
 def test_is_not_regex_match_accepts_not_matching_pattern(value: str, pattern: str):
     """
-    Tests that the `is_not_regex_match()` method does not throw an ArgumentError
+    Tests that the `is_not_regex_match()` method does not throw an ArgumentPatternError
     when the value does not match the specified pattern.
     """
     # Arrange
@@ -1471,25 +1469,23 @@ def test_is_not_regex_match_accepts_not_matching_pattern(value: str, pattern: st
 @pytest.mark.parametrize(
     'value,pattern',
     [
-        ('1234', r'\d+'),
-        ('test', r'\w+'),
-        ('this_is_my_value', r'[a-z_]+')
+        ('1234', r'^\d+$'),
+        ('test', r'^\w+$'),
+        ('this_is_my_value', r'^[a-z_]+$')
     ]
 )
 def test_is_not_regex_match_throws_error_on_matching_pattern(value: str, pattern: str):
     """
-    Tests that the `is_not_regex_match()` method throws an ArgumentError
+    Tests that the `is_not_regex_match()` method throws an ArgumentPatternError
     when the value matches the specified pattern.
     """
     # Arrange
     validator = StringValidator(value, 'value')
 
-    # Act
-    try:
-        validator.is_not_regex_match(pattern)
     # Assert
-    except ArgumentPatternError:
-        pytest.fail(f'`{value}` should match the pattern `{pattern}`, but an error occurred.')
+    with pytest.raises(ArgumentPatternError):
+        # Act
+        validator.is_not_regex_match(pattern)
 
 
 def test_is_not_regex_match_returns_validator_self():
@@ -1499,7 +1495,7 @@ def test_is_not_regex_match_returns_validator_self():
     """
     # Arrange
     value = '1234'
-    pattern = r'\w+'
+    pattern = r'^[a-z]+$'
     validator = StringValidator(value, 'value')
 
     # Act

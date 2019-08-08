@@ -963,9 +963,9 @@ def test_intg_does_not_contain_accepts_valid_value(value: str, contains: str):
 @pytest.mark.parametrize(
     'value,pattern',
     [
-        ('1234', r'\d+'),
-        ('test', r'\w+'),
-        ('this_is_my_value', r'[a-z_]+')
+        ('1234', r'^\d+$'),
+        ('test', r'^\w+$'),
+        ('this_is_my_value', r'^[a-z_]+$')
     ]
 )
 def test_intg_is_regex_match_accepts_matching_pattern(value: str, pattern: str):
@@ -984,9 +984,9 @@ def test_intg_is_regex_match_accepts_matching_pattern(value: str, pattern: str):
 @pytest.mark.parametrize(
     'value,pattern',
     [
-        # ('test', r'\d+'),
-        ('1234', r'\w+'),
-        ('this-is-my-value', r'[a-z_]+')
+        ('test', r'^\d+$'),
+        ('1234', r'^[a-z]+$'),
+        ('this-is-my-value', r'^[a-z_]+$')
     ]
 )
 def test_intg_is_regex_match_throws_error_on_not_matching_pattern(value: str, pattern: str):
@@ -995,19 +995,17 @@ def test_intg_is_regex_match_throws_error_on_not_matching_pattern(value: str, pa
     throws an ArgumentError when the value does not match the specified pattern.
     """
     # Act
-    try:
+    with pytest.raises(ArgumentPatternError):
+		# Act
         Condition.requires_str(value, 'value').is_regex_match(pattern)
-    # Assert
-    except ArgumentPatternError:
-        pytest.fail(f'`{value}` should match the pattern `{pattern}`, but an error occurred.')
 
 
 @pytest.mark.parametrize(
     'value,pattern',
     [
-        # ('test', r'\d+'),
-        ('1234', r'\w+'),
-        ('this-is-my-value', r'[a-z_]+')
+        ('test', r'^\d+$'),
+        ('1234', r'^[a-z]+$'),
+        ('this-is-my-value', r'^[a-z_]+$')
     ]
 )
 def test_intg_is_not_regex_match_accepts_not_matching_pattern(value: str, pattern: str):
@@ -1026,9 +1024,9 @@ def test_intg_is_not_regex_match_accepts_not_matching_pattern(value: str, patter
 @pytest.mark.parametrize(
     'value,pattern',
     [
-        ('1234', r'\d+'),
-        ('test', r'\w+'),
-        ('this_is_my_value', r'[a-z_]+')
+        ('1234', r'^\d+$'),
+        ('test', r'^\w+$'),
+        ('this_is_my_value', r'^[a-z_]+$')
     ]
 )
 def test_intg_is_not_regex_match_throws_error_on_matching_pattern(value: str, pattern: str):
@@ -1036,9 +1034,7 @@ def test_intg_is_not_regex_match_throws_error_on_matching_pattern(value: str, pa
     Tests the `is_not_regex_match()` through `Condition.requires_str()` to see if it,
     throws an ArgumentError when the value matches the specified pattern.
     """
-    # Act
-    try:
-        Condition.requires_str(value, 'value').is_not_regex_match(pattern)
     # Assert
-    except ArgumentPatternError:
-        pytest.fail(f'`{value}` should match the pattern `{pattern}`, but an error occurred.')
+    with pytest.raises(ArgumentPatternError):
+		# Act
+        Condition.requires_str(value, 'value').is_not_regex_match(pattern)
