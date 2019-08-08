@@ -12,7 +12,7 @@ Conditions is a Python port of the famous .NET library [Conditions](https://gith
 - [Installation](#installation) 
 - [Conditions](#conditions)
 - [Tests](#tests)
-- [Usage](#usage)
+- [Examples](#examples)
 - [Acknowledgements](#acknowledgements)
 
 ## Installation
@@ -29,7 +29,7 @@ A full list of all the available conditions can be found in the [Wiki](https://g
 
 Currently both unit and integration tests are written using the `pytest` library. Execution of tests in Visual Studio Code is performed using the `pytest` test runner.
 
-## Usage
+## Examples
 
 ```python
 import conditions_py
