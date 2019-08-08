@@ -151,3 +151,33 @@ class NumberValidator(Validator):
             )
 
         return self
+
+
+    def is_positive(self) -> NumberValidator:
+        """
+        Checks to see whether the given value is positive or not.
+        An exception is thrown otherwise.
+        """
+        if self.value < 0:
+            raise ArgumentOutOfRangeError(
+                f'The argument `{self.argument_name}` should be positive (or 0), but was `{self.value}`',
+                self.value,
+                self.argument_name
+            )
+
+        return self
+
+
+    def is_negative(self) -> NumberValidator:
+        """
+        Checks to see whether the given value is positive or not.
+        An exception is thrown otherwise.
+        """
+        if self.value >= 0:
+            raise ArgumentOutOfRangeError(
+                f'The argument `{self.argument_name}` should be negative, but was `{self.value}`',
+                self.value,
+                self.argument_name
+            )
+
+        return self

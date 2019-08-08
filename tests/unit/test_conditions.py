@@ -24,7 +24,7 @@ def test_requires_returns_boolean_validator(value: bool):
     the boolean datatype.
     """
     # Act
-    validator = Condition.requires(value, 'value')
+    validator = Condition.requires_bool(value, 'value')
 
     # Assert
     assert isinstance(validator, BooleanValidator)
@@ -45,7 +45,7 @@ def test_requires_returns_number_validator(value: number):
     the number (float, int) datatype.
     """
     # Act
-    validator = Condition.requires(value, 'value')
+    validator = Condition.requires_num(value, 'value')
 
     # Assert
     assert isinstance(validator, NumberValidator)
@@ -60,7 +60,7 @@ def test_requires_returns_object_validator():
     obj = TypeExample()
 
     # Act
-    validator = Condition.requires(obj, 'obj')
+    validator = Condition.requires_obj(obj, 'obj')
 
     # Assert
     assert isinstance(validator, ObjectValidator)

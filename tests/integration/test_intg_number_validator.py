@@ -35,13 +35,13 @@ def test_intg_is_in_range_accepts_valid_range(
     max_value: number
 ):
     """
-    Tests the `is_in_range()` validator method through `Condition.requires()` to see if it,
+    Tests the `is_in_range()` validator method through `Condition.requires_num()` to see if it,
     does not throw an ArgumentOutOfRangeError when it is suppied with a value that is within
     the supplied range.
     """
     # Act
     try:
-        Condition.requires(value, 'value').is_in_range(min_value, max_value)
+        Condition.requires_num(value, 'value').is_in_range(min_value, max_value)
     # Assert
     except ArgumentOutOfRangeError:
         pytest.fail(f'`{value}` should have been accepted in the range `{min_value}-{max_value}`, but instead an error occurred.')
@@ -74,13 +74,13 @@ def test_intg_is_in_range_throws_error_on_invalid_range(
     max_value: number
 ):
     """
-    Tests the `is_in_range()` method through `Condition.requires()` to see if it,
+    Tests the `is_in_range()` method through `Condition.requires_num()` to see if it,
     throws an ArgumentOutOfRangeError when it is supplied with a value not in the supplied range.
     """
     # Assert
     with pytest.raises(ArgumentOutOfRangeError):
         # Act
-        Condition.requires(value, 'value').is_in_range(min_value, max_value)
+        Condition.requires_num(value, 'value').is_in_range(min_value, max_value)
 
 
 @pytest.mark.parametrize(
@@ -110,13 +110,13 @@ def test_intg_is_not_in_range_accepts_valid_range(
     max_value: number
 ):
     """
-    Tests the `is_not_in_range()` method through `Condition.requires()` to see if it,
+    Tests the `is_not_in_range()` method through `Condition.requires_num()` to see if it,
     does not throw an ArgumentOutOfRangeError when it is supplied with a value not in the
     supplied range.
     """
     # Act
     try:
-        Condition.requires(value, 'value').is_not_in_range(min_value, max_value)
+        Condition.requires_num(value, 'value').is_not_in_range(min_value, max_value)
     # Assert
     except ArgumentOutOfRangeError:
         pytest.fail(f'`{value}` should not have been accepted in the range `{min_value}-{max_value}`, but no error occurred.')
@@ -149,13 +149,13 @@ def test_intg_is_not_in_range_throws_error_on_invalid_range(
     max_value: number
 ):
     """
-    Tests the `is_not_in_range()` method through `Condition.requires()` to see if it,
+    Tests the `is_not_in_range()` method through `Condition.requires_num()` to see if it,
     throws an ArgumentOutOfRangeError when it is supplied with a value in the supplied range.
     """
     # Assert
     with pytest.raises(ArgumentOutOfRangeError):
         # Act
-        Condition.requires(value, 'value').is_not_in_range(min_value, max_value)
+        Condition.requires_num(value, 'value').is_not_in_range(min_value, max_value)
 
 
 @pytest.mark.parametrize(
@@ -184,13 +184,13 @@ def test_intg_is_greater_than_accepts_greater_than_value(
     min_value: number
 ):
     """
-    Tests the `is_greater_than()` method through `Condition.requires()` to see if it,
+    Tests the `is_greater_than()` method through `Condition.requires_num()` to see if it,
     does not throw an ArgumentOutOfRangeError when it is supplied with a value that is
     greater than the minimum value.
     """
     # Act
     try:
-        Condition.requires(value, 'value').is_greater_than(min_value)
+        Condition.requires_num(value, 'value').is_greater_than(min_value)
     # Assert
     except ArgumentOutOfRangeError:
         pytest.fail(f'`{value}` should be greater than `{min_value}`, but instead an error occurred.')
@@ -222,14 +222,14 @@ def test_intg_is_greater_than_throws_error_on_less_than_value(
     min_value: number
 ):
     """
-    Tests the `is_greater_than()` method through `Condition.requires()` to see if it,
+    Tests the `is_greater_than()` method through `Condition.requires_num()` to see if it,
     throws an ArgumentOutOfRangeError when it is supplied with a value that is less than
     the minimum value.
     """
     # Assert
     with pytest.raises(ArgumentOutOfRangeError):
         # Act
-        Condition.requires(value, 'value').is_greater_than(min_value)
+        Condition.requires_num(value, 'value').is_greater_than(min_value)
 
 
 @pytest.mark.parametrize(
@@ -258,14 +258,14 @@ def test_intg_is_greater_than_throws_error_on_equal_value(
     min_value: number
 ):
     """
-    Tests the `is_greater_than()` method through `Condition.requires()` to see if it,
+    Tests the `is_greater_than()` method through `Condition.requires_num()` to see if it,
     throws an ArgumentOutOfRangeError when it is supplied with a value that is equal
     to the minimum value.
     """
     # Assert
     with pytest.raises(ArgumentOutOfRangeError):
         # Act
-        Condition.requires(value, 'value').is_greater_than(min_value)
+        Condition.requires_num(value, 'value').is_greater_than(min_value)
 
 
 @pytest.mark.parametrize(
@@ -294,13 +294,13 @@ def test_intg_is_greater_or_equal_accepts_greater_than_value(
     min_value: number
 ):
     """
-    Tests the `is_greater_or_equal()` method through `Condition.requires()` to see if it,
+    Tests the `is_greater_or_equal()` method through `Condition.requires_num()` to see if it,
     does not throw an ArgumentOutOfRangeError when it is supplied with a value that is greater
     than the minimum value.
     """
     # Act
     try:
-        Condition.requires(value, 'value').is_greater_or_equal(min_value)
+        Condition.requires_num(value, 'value').is_greater_or_equal(min_value)
     # Assert
     except ArgumentOutOfRangeError:
         pytest.fail(f'`{value}` should be greater or equal to `{min_value}`, but an error occurred.')
@@ -332,13 +332,13 @@ def test_intg_is_greater_or_equal_accepts_equal_value(
     min_value: number
 ):
     """
-    Tests the `is_greater_or_equal()` method through `Condition.requires()` to see if it,
+    Tests the `is_greater_or_equal()` method through `Condition.requires_num()` to see if it,
     does not throw an ArgumentOutOfRangeError when it is supplied with a value that is
     equal to the minimum value.
     """
     # Act
     try:
-        Condition.requires(value, 'value').is_greater_or_equal(min_value)
+        Condition.requires_num(value, 'value').is_greater_or_equal(min_value)
     # Assert
     except ArgumentOutOfRangeError:
         pytest.fail(f'`{value}` should be greater than or equal to `{min_value}`, but an error occurred.')
@@ -370,14 +370,14 @@ def test_intg_is_greater_or_equal_throws_error_on_less_than_value(
     min_value: number
 ):
     """
-    Tests the `is_greater_or_equal()` method through `Condition.requires()` to see if it,
+    Tests the `is_greater_or_equal()` method through `Condition.requires_num()` to see if it,
     throws an ArgumentOutOfRangeError when it is supplied with a value that is less than the
     minimum value.
     """
     # Assert
     with pytest.raises(ArgumentOutOfRangeError):
         # Act
-        Condition.requires(value, 'value').is_greater_or_equal(min_value)
+        Condition.requires_num(value, 'value').is_greater_or_equal(min_value)
 
 
 @pytest.mark.parametrize(
@@ -406,13 +406,13 @@ def test_intg_is_less_than_accepts_less_than_value(
     max_value: number
 ):
     """
-    Tests the `is_less_than()` method through `Condition.requires()` to see if it,
+    Tests the `is_less_than()` method through `Condition.requires_num()` to see if it,
     does not throw an ArgumentOutOfRangeError when it is supplied with a value that is
     less than the maximum value.
     """
     # Act
     try:
-        Condition.requires(value, 'value').is_less_than(max_value)
+        Condition.requires_num(value, 'value').is_less_than(max_value)
     # Assert
     except ArgumentOutOfRangeError:
         pytest.fail(f'`{value}` should be less than `{max_value}`, but instead an error occurred.')
@@ -444,14 +444,14 @@ def test_intg_is_less_than_throws_error_on_greater_than_value(
     max_value: number
 ):
     """
-    Tests the `is_less_than()` method through `Condition.requires()` to see if it,
+    Tests the `is_less_than()` method through `Condition.requires_num()` to see if it,
     throws an ArgumentOutOfRangeError when it is supplied with a value that is greater
     than the maximum value.
     """
     # Assert
     with pytest.raises(ArgumentOutOfRangeError):
         # Act
-        Condition.requires(value, 'value').is_less_than(max_value)
+        Condition.requires_num(value, 'value').is_less_than(max_value)
 
 
 @pytest.mark.parametrize(
@@ -480,14 +480,14 @@ def test_intg_is_less_than_throws_error_on_equal_value(
     max_value: number
 ):
     """
-    Tests the `is_less_than()` method through `Condition.requires()` to see if it,
+    Tests the `is_less_than()` method through `Condition.requires_num()` to see if it,
     throws an ArgumentOutOfRangeError when it is supplied with a value that is equal
     to the maximum value.
     """
     # Assert
     with pytest.raises(ArgumentOutOfRangeError):
         # Act
-        Condition.requires(value, 'value').is_less_than(max_value)
+        Condition.requires_num(value, 'value').is_less_than(max_value)
 
 
 @pytest.mark.parametrize(
@@ -516,13 +516,13 @@ def test_intg_is_less_or_equal_accepts_less_than_value(
     max_value: number
 ):
     """
-    Tests the `is_less_or_equal()` method through `Condition.requires()` to see if it,
+    Tests the `is_less_or_equal()` method through `Condition.requires_num()` to see if it,
     does not throw an ArgumentOutOfRangeError when it is supplied with a value that is less
     than the maximum value.
     """
     # Act
     try:
-        Condition.requires(value, 'value').is_less_or_equal(max_value)
+        Condition.requires_num(value, 'value').is_less_or_equal(max_value)
     # Assert
     except ArgumentOutOfRangeError:
         pytest.fail(f'`{value}` should be less than or equal to `{max_value}`, but instead an error occurred.')
@@ -554,13 +554,13 @@ def test_intg_is_less_or_equal_accepts_equal_value(
     max_value: number
 ):
     """
-    Tests the `is_less_or_equal()` method through `Condition.requires()` to see if it,
+    Tests the `is_less_or_equal()` method through `Condition.requires_num()` to see if it,
     does not throw an ArgumentOutOfRangeError when it is supplied with a value that is
     equal to the maximum value.
     """
     # Act
     try:
-        Condition.requires(value, 'value').is_less_or_equal(max_value)
+        Condition.requires_num(value, 'value').is_less_or_equal(max_value)
     # Assert
     except ArgumentOutOfRangeError:
         pytest.fail()
@@ -592,14 +592,14 @@ def test_intg_is_less_or_equal_throws_error_on_greater_than_value(
     max_value: number
 ):
     """
-    Tests the `is_less_or_equal()` method through `Condition.requires()` to see if it,
+    Tests the `is_less_or_equal()` method through `Condition.requires_num()` to see if it,
     throws an ArgumentOutOfRangeError when it is supplied with a value that is greater than
     the maximum value.
     """
     # Assert
     with pytest.raises(ArgumentOutOfRangeError):
         # Act
-        Condition.requires(value, 'value').is_less_or_equal(max_value)
+        Condition.requires_num(value, 'value').is_less_or_equal(max_value)
 
 
 @pytest.mark.parametrize(
@@ -628,13 +628,13 @@ def test_intg_is_equal_to_accepts_valid_value(
     equal_to: number
 ):
     """
-    Tests the `is_equal()` method through `Condition.requires()` to see if it,
+    Tests the `is_equal()` method through `Condition.requires_num()` to see if it,
     does not throw an ArgumentOutOfRangeError when it is supplied with a value that is
     equal to the equal value.
     """
     # Act
     try:
-        Condition.requires(value, 'value').is_equal_to(equal_to)
+        Condition.requires_num(value, 'value').is_equal_to(equal_to)
     # Assert
     except ArgumentOutOfRangeError:
         pytest.fail()
@@ -666,14 +666,14 @@ def test_intg_is_equal_to_throws_error_on_invalid_value(
     not_equal_to: number
 ):
     """
-    Tests the `is_equal()` method through `Condition.requires()` to see if it,
+    Tests the `is_equal()` method through `Condition.requires_num()` to see if it,
     throws an ArgumentOutOfRangeError when it is supplied with a value that is not
     equal to the equal value.
     """
     # Assert
     with pytest.raises(ArgumentOutOfRangeError):
         # Act
-        Condition.requires(value, 'value').is_equal_to(not_equal_to)
+        Condition.requires_num(value, 'value').is_equal_to(not_equal_to)
 
 
 @pytest.mark.parametrize(
@@ -702,13 +702,13 @@ def test_intg_is_not_equal_to_accepts_valid_value(
     equal_to: number
 ):
     """
-    Tests the `is_not_equal()` method through `Condition.requires()` to see if it,
+    Tests the `is_not_equal()` method through `Condition.requires_num()` to see if it,
     does not throw an ArgumentOutOfRangeError when it is supplied with a value that is
     not equal to the not equal value.
     """
     # Act
     try:
-        Condition.requires(value, 'value').is_not_equal_to(equal_to)
+        Condition.requires_num(value, 'value').is_not_equal_to(equal_to)
     # Assert
     except ArgumentOutOfRangeError:
         pytest.fail()
@@ -740,11 +740,143 @@ def test_intg_is_not_equal_to_throws_error_on_invalid_value(
     not_equal_to: number
 ):
     """
-    Tests the `is_not_equal()` method through `Condition.requires()` to see if it,
+    Tests the `is_not_equal()` method through `Condition.requires_num()` to see if it,
     throws an ArgumentOutOfRangeError when it is supplied with a value that is equal
     to the not equal value.
     """
     # Assert
     with pytest.raises(ArgumentOutOfRangeError):
         # Act
-        Condition.requires(value, 'value').is_not_equal_to(not_equal_to)
+        Condition.requires_num(value, 'value').is_not_equal_to(not_equal_to)
+
+
+@pytest.mark.parametrize(
+    'value',
+    [
+        (2),
+        (3),
+        (11),
+        (12),
+        (650),
+        (700),
+        (2000),
+        (2500),
+        (2.30),
+        (3.5),
+        (11.1),
+        (12.56),
+        (650.3),
+        (600.65),
+        (2000.6547),
+        (2500.7869)
+    ]
+)
+def test_intg_is_positive_accepts_positive_number(value: number):
+    """
+    Tests that the `is_positive()` method does not throw an ArgumentOutOfRangeError
+    when the value is a positive number.
+    """
+    # Act
+    try:
+        Condition.requires_num(value, 'value').is_positive()
+    # Assert
+    except ArgumentOutOfRangeError:
+        pytest.fail()
+
+
+@pytest.mark.parametrize(
+    'value',
+    [
+        (-2),
+        (-3),
+        (-11),
+        (-12),
+        (-650),
+        (-700),
+        (-2000),
+        (-2500),
+        (-2.30),
+        (-3.5),
+        (-11.1),
+        (-12.56),
+        (-650.3),
+        (-600.65),
+        (-2000.6547),
+        (-2500.7869)
+    ]
+)
+def test_intg_is_positive_throws_error_on_negative_number(value: number):
+    """
+    Tests that the `is_positive()` method does not throw an ArgumentOutOfRangeError
+    when the value is a negative number.
+    """
+    # Assert
+    with pytest.raises(ArgumentOutOfRangeError):
+        # Act
+        Condition.requires_num(value, 'value').is_positive()
+
+
+@pytest.mark.parametrize(
+    'value',
+    [
+        (-2),
+        (-3),
+        (-11),
+        (-12),
+        (-650),
+        (-700),
+        (-2000),
+        (-2500),
+        (-2.30),
+        (-3.5),
+        (-11.1),
+        (-12.56),
+        (-650.3),
+        (-600.65),
+        (-2000.6547),
+        (-2500.7869)
+    ]
+)
+def test_intg_is_negative_accepts_negative_number(value: number):
+    """
+    Tests that the `is_negative()` method does not throw an ArgumentOutOfRangeError
+    when the value is a negative number.
+    """
+    # Act
+    try:
+        Condition.requires_num(value, 'value').is_negative()
+    # Assert
+    except ArgumentOutOfRangeError:
+        pytest.fail()
+
+
+@pytest.mark.parametrize(
+    'value',
+    [
+        (2),
+        (3),
+        (11),
+        (12),
+        (650),
+        (700),
+        (2000),
+        (2500),
+        (2.30),
+        (3.5),
+        (11.1),
+        (12.56),
+        (650.3),
+        (600.65),
+        (2000.6547),
+        (2500.7869)
+    ]
+)
+def test_intg_is_negative_throws_error_on_positive_number(value: number):
+    """
+    Tests that the `is_negative()` method does not throw an ArgumentOutOfRangeError
+    when the value is a positive number.
+    """
+    # Assert
+    with pytest.raises(ArgumentOutOfRangeError):
+        # Act
+        Condition.requires_num(value, 'value').is_negative()

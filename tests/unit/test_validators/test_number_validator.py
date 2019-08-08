@@ -910,3 +910,177 @@ def test_is_not_equal_returns_validator_self():
 
     # Assert
     assert validator_returned is validator
+
+
+@pytest.mark.parametrize(
+    'value',
+    [
+        (2),
+        (3),
+        (11),
+        (12),
+        (650),
+        (700),
+        (2000),
+        (2500),
+        (2.30),
+        (3.5),
+        (11.1),
+        (12.56),
+        (650.3),
+        (600.65),
+        (2000.6547),
+        (2500.7869)
+    ]
+)
+def test_is_positive_accepts_positive_number(value: number):
+    """
+    Tests that the `is_positive()` method does not throw an ArgumentOutOfRangeError
+    when the value is a positive number.
+    """
+    # Arrange
+    validator = NumberValidator(value, 'value')
+
+    # Act
+    try:
+        validator.is_positive()
+    # Assert
+    except ArgumentOutOfRangeError:
+        pytest.fail()
+
+
+@pytest.mark.parametrize(
+    'value',
+    [
+        (-2),
+        (-3),
+        (-11),
+        (-12),
+        (-650),
+        (-700),
+        (-2000),
+        (-2500),
+        (-2.30),
+        (-3.5),
+        (-11.1),
+        (-12.56),
+        (-650.3),
+        (-600.65),
+        (-2000.6547),
+        (-2500.7869)
+    ]
+)
+def test_is_positive_throws_error_on_negative_number(value: number):
+    """
+    Tests that the `is_positive()` method does not throw an ArgumentOutOfRangeError
+    when the value is a negative number.
+    """
+    # Arrange
+    validator = NumberValidator(value, 'value')
+
+    # Assert
+    with pytest.raises(ArgumentOutOfRangeError):
+        # Act
+        validator.is_positive()
+
+
+def test_is_positive_returns_validator_self():
+    """
+    Tests if the `is_positive()` validator method returns itself after the validation is performed,
+    so that additional validations can be performed.
+    """
+    # Arrange
+    validator = NumberValidator(5, "value")
+
+    # Act
+    validator_returned = validator.is_positive()
+
+    # Assert
+    assert validator_returned is validator
+
+
+@pytest.mark.parametrize(
+    'value',
+    [
+        (-2),
+        (-3),
+        (-11),
+        (-12),
+        (-650),
+        (-700),
+        (-2000),
+        (-2500),
+        (-2.30),
+        (-3.5),
+        (-11.1),
+        (-12.56),
+        (-650.3),
+        (-600.65),
+        (-2000.6547),
+        (-2500.7869)
+    ]
+)
+def test_is_negative_accepts_negative_number(value: number):
+    """
+    Tests that the `is_negative()` method does not throw an ArgumentOutOfRangeError
+    when the value is a negative number.
+    """
+    # Arrange
+    validator = NumberValidator(value, 'value')
+
+    # Act
+    try:
+        validator.is_negative()
+    # Assert
+    except ArgumentOutOfRangeError:
+        pytest.fail()
+
+
+@pytest.mark.parametrize(
+    'value',
+    [
+        (2),
+        (3),
+        (11),
+        (12),
+        (650),
+        (700),
+        (2000),
+        (2500),
+        (2.30),
+        (3.5),
+        (11.1),
+        (12.56),
+        (650.3),
+        (600.65),
+        (2000.6547),
+        (2500.7869)
+    ]
+)
+def test_is_negative_throws_error_on_positive_number(value: number):
+    """
+    Tests that the `is_negative()` method does not throw an ArgumentOutOfRangeError
+    when the value is a positive number.
+    """
+    # Arrange
+    validator = NumberValidator(value, 'value')
+
+    # Assert
+    with pytest.raises(ArgumentOutOfRangeError):
+        # Act
+        validator.is_negative()
+
+
+def test_is_negative_returns_validator_self():
+    """
+    Tests if the `is_negative()` validator method returns itself after the validation is performed,
+    so that additional validations can be performed.
+    """
+    # Arrange
+    validator = NumberValidator(-5, "value")
+
+    # Act
+    validator_returned = validator.is_negative()
+
+    # Assert
+    assert validator_returned is validator

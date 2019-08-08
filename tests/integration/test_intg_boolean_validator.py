@@ -5,7 +5,7 @@ from src.errors.argument_error import ArgumentError
 
 def test_intg_is_true_throws_error_on_false():
     """
-    Tests the `is_true()` validator method through `Condition.requires()` to see if it,
+    Tests the `is_true()` validator method through `Condition.requires_bool()` to see if it,
 	throws an `ArgumentError` when the supplied value is False.
     """
     # Arrange
@@ -14,12 +14,12 @@ def test_intg_is_true_throws_error_on_false():
     # Assert
     with pytest.raises(ArgumentError):
         # Act
-        Condition.requires(value, 'value').is_true()
+        Condition.requires_bool(value, 'value').is_true()
 
 
 def test_intg_is_true_accepts_true():
     """
-    Tests the `is_true()` validator method through `Condition.requires()` to see if it,
+    Tests the `is_true()` validator method through `Condition.requires_bool()` to see if it,
 	does not throw an `ArgumentError` when the supplied value is True.
     """
     # Arrange
@@ -27,7 +27,7 @@ def test_intg_is_true_accepts_true():
 
     # Act
     try:
-        Condition.requires(value, 'value').is_true()
+        Condition.requires_bool(value, 'value').is_true()
     # Assert
     except ArgumentError:
         pytest.fail()
@@ -35,7 +35,7 @@ def test_intg_is_true_accepts_true():
 
 def test_intg_is_false_throws_argument_error_on_true():
     """
-    Tests the `is_false()` validator method through `Condition.requires()` to see if it,
+    Tests the `is_false()` validator method through `Condition.requires_bool()` to see if it,
 	throws an `ArgumentError` when the supplied value is True.
     """
     # Arrange
@@ -44,12 +44,12 @@ def test_intg_is_false_throws_argument_error_on_true():
     # Assert
     with pytest.raises(ArgumentError):
         # Act
-        Condition.requires(value, 'value').is_false()
+        Condition.requires_bool(value, 'value').is_false()
 
 
 def test_intg_is_false_accepts_false():
     """
-    Tests the `is_false()` validator method through `Condition.requires()` to see if it,
+    Tests the `is_false()` validator method through `Condition.requires_bool()` to see if it,
 	does not throw an `ArgumentError` when the supplied value is False.
     """
     # Arrange
@@ -57,7 +57,7 @@ def test_intg_is_false_accepts_false():
 
     # Act
     try:
-        Condition.requires(value, 'value').is_false()
+        Condition.requires_bool(value, 'value').is_false()
     # Asset
     except ArgumentError:
         pytest.fail()
