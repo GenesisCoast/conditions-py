@@ -3,6 +3,29 @@ from src.errors.argument_error import ArgumentError
 from src.validators.boolean_validator import BooleanValidator
 
 
+@pytest.mark.parametrize(
+    'value',
+    [
+        (True),
+        (False),
+    ]
+)
+def test_prnt_get_value_returns_value(value):
+    """
+    Tests if the parent `get_value()` method returns the value saved in the validator.
+    """
+    # Arrange
+    validator = BooleanValidator(value, 'value')
+
+    # Act
+    actual = validator.get_value()
+
+    # Assert
+    assert actual == value
+    assert actual is value
+    assert type(actual) == type(value)
+
+
 def test_is_true_throws_error_on_false():
     """
     Tests if the `is_true()` validator method throws an `ArgumentError`

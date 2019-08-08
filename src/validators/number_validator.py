@@ -23,6 +23,13 @@ class NumberValidator(Validator):
         super().__init__(value, argument_name)
 
 
+    def get_value(self) -> str:
+        """
+        Returns the validator value.
+        """
+        return super().get_value()
+
+
     def is_in_range(self, min_value: number, max_value: number) -> NumberValidator:
         """
         Checks whether the given value is between `min_value` and `max_value` (including those values).

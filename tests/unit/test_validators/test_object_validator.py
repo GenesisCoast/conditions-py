@@ -7,6 +7,23 @@ from src.errors.argument_null_error import ArgumentNullError
 from src.validators.object_validator import ObjectValidator
 
 
+def test_prnt_get_value_returns_value():
+    """
+    Tests if the parent `get_value()` method returns the value saved in the validator.
+    """
+    # Arrange
+    obj = type('type', (object,), {})()
+    validator = ObjectValidator(obj, 'obj')
+
+    # Act
+    actual = validator.get_value()
+
+    # Assert
+    assert actual == obj
+    assert actual is obj
+    assert type(actual) == type(obj)
+
+
 def test_is_of_type_name_accepts_equivalent_type():
     """
     Tests that the `is_of_type_name()` method does not throw an ArgumentError

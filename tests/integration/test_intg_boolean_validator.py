@@ -3,6 +3,26 @@ from src.condition import Condition
 from src.errors.argument_error import ArgumentError
 
 
+@pytest.mark.parametrize(
+    'value',
+    [
+        (True),
+        (False),
+    ]
+)
+def test_intg_prnt_get_value_returns_value(value):
+    """
+    Tests if the parent `get_value()` method returns the value saved in the validator.
+    """
+	# Act
+    actual = Condition.requires_bool(value, 'value').get_value()
+
+    # Assert
+    assert actual == value
+    assert actual is value
+    assert type(actual) == type(value)
+
+
 def test_intg_is_true_throws_error_on_false():
     """
     Tests the `is_true()` validator method through `Condition.requires_bool()` to see if it,

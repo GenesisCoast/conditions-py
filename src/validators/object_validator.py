@@ -20,6 +20,13 @@ class ObjectValidator(Validator):
         super().__init__(value, argument_name)
 
 
+    def get_value(self) -> str:
+        """
+        Returns the validator value.
+        """
+        return super().get_value()
+
+
     def is_of_type_name(self, type: object) -> ObjectValidator:
         """
         Checks whether the Type of the given value is of `type` by comparing the `__name__` attribute.

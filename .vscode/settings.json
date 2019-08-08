@@ -18,6 +18,7 @@
         "isclass",
         "isspace",
         "parameterize",
+        "prnt",
         "pscmdlet",
         "psobject",
         "pytest",

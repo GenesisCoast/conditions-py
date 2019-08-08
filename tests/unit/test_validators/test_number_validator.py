@@ -9,6 +9,43 @@ number = TypeVar('number', int, float)
 
 
 @pytest.mark.parametrize(
+    'value',
+    [
+        (2),
+        (3),
+        (11),
+        (12),
+        (650),
+        (700),
+        (2000),
+        (2500),
+        (2.30),
+        (3.5),
+        (11.1),
+        (12.56),
+        (650),
+        (700),
+        (2000.6547),
+        (2500.7869)
+    ]
+)
+def test_prnt_get_value_returns_value(value):
+    """
+    Tests if the parent `get_value()` method returns the value saved in the validator.
+    """
+    # Arrange
+    validator = NumberValidator(value, 'value')
+
+    # Act
+    actual = validator.get_value()
+
+    # Assert
+    assert actual == value
+    assert actual is value
+    assert type(actual) == type(value)
+
+
+@pytest.mark.parametrize(
     'value,min_value,max_value',
     [
         (2, 2, 3),

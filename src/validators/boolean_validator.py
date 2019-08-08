@@ -17,6 +17,13 @@ class BooleanValidator(Validator):
         super().__init__(value, argument_name)
 
 
+    def get_value(self) -> str:
+        """
+        Returns the validator value.
+        """
+        return super().get_value()
+
+
     def is_true(self) -> BooleanValidator:
         """
         Checks whether the given value is `True`. An exception is thrown otherwise.

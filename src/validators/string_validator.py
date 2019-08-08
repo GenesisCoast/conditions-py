@@ -23,6 +23,13 @@ class StringValidator(Validator):
         super().__init__(value, argument_name)
 
 
+    def get_value(self) -> str:
+        """
+        Returns the validator value.
+        """
+        return super().get_value()
+
+
     def is_null(self) -> StringValidator:
         """
         Checks whether the given value is none (null). An exception is thrown otherwise.
@@ -196,6 +203,34 @@ class StringValidator(Validator):
         if len(self.value) == length:
             raise ArgumentError(
                 f'The argument `{self.argument_name}` should not have a length of `{length}` but is `{len(self.value)}`',
+                self.value,
+                self.argument_name
+            )
+
+        return self
+
+
+    def equals(self, value: str) -> StringValidator:
+        """
+        Checks whether the given value equals the specified `value`. An exception is thrown otherwise.
+        """
+        if self.value != value:
+            raise ArgumentError(
+                f'The argument `{self.argument_name}` should equal `{value}` but was actually `{self.value}`',
+                self.value,
+                self.argument_name
+            )
+
+        return self
+
+
+    def does_not_equal(self, value: str) -> StringValidator:
+        """
+        Checks whether the given value equals the specified `value`. An exception is thrown otherwise.
+        """
+        if self.value == value:
+            raise ArgumentError(
+                f'The argument `{self.argument_name}` should equal `{value}` but was actually `{self.value}`',
                 self.value,
                 self.argument_name
             )

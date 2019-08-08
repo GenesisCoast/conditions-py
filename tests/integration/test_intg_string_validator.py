@@ -9,6 +9,28 @@ EMPTY_STRING = ''
 WHITESPACE_STRING = ' '
 
 
+@pytest.mark.parametrize(
+    'value',
+    [
+        ('hello world'),
+        ('test'),
+        ('lorem ipsum!'),
+        ('this_is_a_value')
+    ]
+)
+def test_intg_prnt_get_value_returns_value(value):
+    """
+    Tests if the parent `get_value()` method returns the value saved in the validator.
+    """
+    # Act
+    actual = Condition.requires_str(value, 'value').get_value()
+
+    # Assert
+    assert actual == value
+    assert actual is value
+    assert type(actual) == type(value)
+
+
 def test_intg_is_null_accepts_null_value():
     """
     Tests the `is_null()` through `Condition.requires_str()` to see if it,
@@ -718,6 +740,68 @@ def test_intg_does_not_have_length_accepts_notequal_length(value: str, length: i
     # Assert
     except ArgumentError:
         pytest.fail(f'`{value}` should not have the length `{length}`, but an error occurred.')
+
+
+def test_equals_accepts_equal_value():
+    """
+    Tests that the `equals()` method does not throw an ArgumentError
+    when the value is equal to the specified value.
+    """
+    # Arrange
+    value = 'Hello World!'
+
+    # Act
+    try:
+        Condition.requires_str(value, 'value').equals(value)
+    # Assert
+    except ArgumentError:
+        pytest.fail()
+
+
+def test_equals_throws_error_on_notequal_value():
+    """
+    Tests that the `equals()` method throws an ArgumentError
+    when the value is not equal to the specified value.
+    """
+    # Arrange
+    value = 'Hello World!'
+    equals = 'Test'
+
+    # Assert
+    with pytest.raises(ArgumentError):
+        # Act
+        Condition.requires_str(value, 'value').equals(equals)
+
+
+def test_intg_does_not_equal_accepts_notequal_value():
+    """
+    Tests that the `equals()` method does not throw an ArgumentError
+    when the value is equal to the specified value.
+    """
+    # Arrange
+    value = 'Hello World!'
+    not_equals = 'Test'
+
+    # Act
+    try:
+        Condition.requires_str(value, 'value').does_not_equal(not_equals)
+    # Assert
+    except ArgumentError:
+        pytest.fail()
+
+
+def test_intg_does_not_equal_throws_error_on_equal_value():
+    """
+    Tests that the `equals()` method throws an ArgumentError
+    when the value is not equal to the specified value.
+    """
+    # Arrange
+    value = 'Hello World!'
+
+    # Assert
+    with pytest.raises(ArgumentError):
+        # Act
+        Condition.requires_str(value, 'value').does_not_equal(value)
 
 
 @pytest.mark.parametrize(

@@ -9,3 +9,10 @@ class Validator:
         """
         self.value = value
         self.argument_name = argument_name
+
+
+    def get_value(self):
+        """
+        Returns the validator value.
+        """
+        return self.value

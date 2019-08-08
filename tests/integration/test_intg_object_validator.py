@@ -7,6 +7,22 @@ from src.errors.argument_error import ArgumentError
 from src.errors.argument_null_error import ArgumentNullError
 
 
+def test_prnt_get_value_returns_value():
+    """
+    Tests if the parent `get_value()` method returns the value saved in the validator.
+    """
+    # Arrange
+    obj = type('type', (object,), {})()
+
+    # Act
+    actual = Condition.requires_obj(obj, 'obj').get_value()
+
+    # Assert
+    assert actual == obj
+    assert actual is obj
+    assert type(actual) == type(obj)
+
+
 def test_intg_is_of_type_name_accepts_equivalent_type():
     """
     Tests the `is_of_type_name()` method through `Condition.requires_obj()` to see if it,

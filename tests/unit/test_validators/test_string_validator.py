@@ -9,6 +9,31 @@ EMPTY_STRING = ''
 WHITESPACE_STRING = ' '
 
 
+@pytest.mark.parametrize(
+    'value',
+    [
+        ('hello world'),
+        ('test'),
+        ('lorem ipsum!'),
+        ('this_is_a_value')
+    ]
+)
+def test_prnt_get_value_returns_value(value):
+    """
+    Tests if the parent `get_value()` method returns the value saved in the validator.
+    """
+    # Arrange
+    validator = StringValidator(value, 'value')
+
+    # Act
+    actual = validator.get_value()
+
+    # Assert
+    assert actual == value
+    assert actual is value
+    assert type(actual) == type(value)
+
+
 def test_is_null_accepts_null_value():
     """
     Tests that the `is_null()` method does not throw an ArgumentError
@@ -996,6 +1021,105 @@ def test_does_not_have_length_returns_validator_self():
 
     # Act
     validator_returned = validator.does_not_have_length(length)
+
+    # Assert
+    assert validator_returned is validator
+
+
+def test_equals_accepts_equal_value():
+    """
+    Tests that the `equals()` method does not throw an ArgumentError
+    when the value is equal to the specified value.
+    """
+    # Arrange
+    value = 'Hello World!'
+    validator = StringValidator(value, 'value')
+
+    # Act
+    try:
+        validator.equals(value)
+    # Assert
+    except ArgumentError:
+        pytest.fail()
+
+
+def test_equals_throws_error_on_notequal_value():
+    """
+    Tests that the `equals()` method throws an ArgumentError
+    when the value is not equal to the specified value.
+    """
+    # Arrange
+    value = 'Hello World!'
+    equals = 'Test'
+    validator = StringValidator(value, 'value')
+
+    # Assert
+    with pytest.raises(ArgumentError):
+        # Act
+        validator.equals(equals)
+
+
+def test_equals_returns_validator_self():
+    """
+    Tests if the `equals()` validator method returns itself after the validation is performed,
+    so that additional validations can be performed.
+    """
+    # Arrange
+    value = 'test'
+    validator = StringValidator(value, 'value')
+
+    # Act
+    validator_returned = validator.equals(value)
+
+    # Assert
+    assert validator_returned is validator
+
+
+def test_does_not_equal_accepts_notequal_value():
+    """
+    Tests that the `does_not_equal()` method does not throw an ArgumentError
+    when the value is not equal to the specified value.
+    """
+    # Arrange
+    value = 'Hello World!'
+    not_equals = 'Test'
+    validator = StringValidator(value, 'value')
+
+    # Act
+    try:
+        validator.does_not_equal(not_equals)
+    # Assert
+    except ArgumentError:
+        pytest.fail()
+
+
+def test_does_not_equal_throws_error_on_equal_value():
+    """
+    Tests that the `does_not_equal()` method throws an ArgumentError
+    when the value is equal to the specified value.
+    """
+    # Arrange
+    value = 'Hello World!'
+    validator = StringValidator(value, 'value')
+
+    # Assert
+    with pytest.raises(ArgumentError):
+        # Act
+        validator.does_not_equal(value)
+
+
+def test_does_not_equal_returns_validator_self():
+    """
+    Tests if the `does_not_equal()` validator method returns itself after the validation is performed,
+    so that additional validations can be performed.
+    """
+    # Arrange
+    value = 'test'
+    not_equal = 'Hello'
+    validator = StringValidator(value, 'value')
+
+    # Act
+    validator_returned = validator.does_not_equal(not_equal)
 
     # Assert
     assert validator_returned is validator
