@@ -12,3 +12,9 @@ script:
 
 after_success:
     - codecov
+    
+deploy:
+  provider: pypi
+  user: "GenesisCoast"
+  password:
+    secure: "KrnXAc4u3W4quurQ1g+aFxh/k7Pt+BXODF8NSr+rVX9t4VzWJCSS4NFj7TAA2pYWR5Pa+ByyqMZS1N+s57aZxPVBMaykGe03lb5K2amFFIfh+j2HWmuiosnyMIQnHzKg6dg+3FjK5YxbzjMCETs/upeh3HbBaP37kWUzA5QPjDam4AqrAbYM6Dt7qhJCkPCchR8xBuIB506WeSyxe77Qz79NLVwb+5+SXdXAyBJz9v8BThTFhY3CemFx3wa1pTrzZZB5B9d+pX3OAJC2eds8Zk4YWvd3VZDtKvlKu8QqQlfpALXy5lpUOvLe/rWYp4W5ZLPT7tHxJGRU6rcDddTixfm9lYZK4obYWh7zc23gB9hN91IY3HJcz9zb5g+V7cSgNDZV3sXps7GzXGQpgTD7ZCHTRYRMF+7Ts0gflJS/EIQoK/ibRESECRHtzRnbsOYgrEXe0tlGl0NI6BkGewVudMm2Yp9XkjVxjABp5sNqCrBunneD8Azu3t2dADmrq8r9caPrJpjnKnJMHSRf0kmIpsLdAdmZUPUQngl6rCMBgsTcnabEQQjfyEiY+NEEDBFRrUqFxnksZRwtqUzp5z7U2Ox8amTWUmb7rXTBFJ4SKxZn/4Ah2lGczSXiOvawclk3xz4fh7bVVLGkkm1mMyIcHniMfm5Elj885iA+bmDZ638="
