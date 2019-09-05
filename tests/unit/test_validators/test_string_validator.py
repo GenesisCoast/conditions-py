@@ -1627,3 +1627,255 @@ def test_is_not_regex_match_returns_validator_self():
 
     # Assert
     assert validator_returned is validator
+
+
+@pytest.mark.parametrize(
+    'value,set',
+    [
+        ('test', ['test']),
+        ('1234', ['1234', '5678', '9876']),
+        ('this-is-my-value', ['this-is-my-value', 'testing', '1234'])
+    ]
+)
+def test_is_in_set_accepts_value_in_set(value: str, set: list):
+    """
+    Tests that the `is_in_set()` method does not throw an ArgumentError when its value is present
+    in the supplied set.
+    """
+    # Arrange
+    validator = StringValidator(value, 'value')
+
+    # Act
+    try:
+        validator.is_in_set(set)
+    # Assert
+    except ArgumentError:
+        pytest.fail(f'`{value}` should be in the set `{set}`, but an error occurred.')
+
+
+@pytest.mark.parametrize(
+    'value,set',
+    [
+        ('1234', ['test']),
+        ('test', ['1234', '5678', '9876']),
+        ('testing', ['this-is-MY-value', 'TESTING', '1234'])
+    ]
+)
+def test_is_in_set_throws_error_on_non_matching_set(value: str, set: list):
+    """
+    Tests that the `is_in_set()` method throws an ArgumentError when its value is not present
+    in the supplied set.
+    """
+    # Arrange
+    validator = StringValidator(value, 'value')
+
+    # Assert
+    with pytest.raises(ArgumentError):
+        # Act
+        validator.is_in_set(set)
+
+
+def test_is_in_set_returns_validator_self():
+    """
+    Tests if the `is_in_set()` validator method returns itself after the validation is performed,
+    so that additional validations can be performed.
+    """
+    # Arrange
+    value = '1234'
+    set = ['1234']
+    validator = StringValidator(value, 'value')
+
+    # Act
+    validator_returned = validator.is_in_set(set)
+
+    # Assert
+    assert validator_returned is validator
+
+
+@pytest.mark.parametrize(
+    'value,set',
+    [
+        ('1234', ['test']),
+        ('test', ['1234', '5678', '9876']),
+        ('testing', ['this-is-MY-value', 'TESTING', '1234'])
+    ]
+)
+def test_is_not_in_set_accepts_value_not_in_set(value: str, set: list):
+    """
+    Tests that the `is_not_in_set()` method accepts when its value is not present
+    in the supplied set.
+    """
+    # Arrange
+    validator = StringValidator(value, 'value')
+
+    # Act
+    try:
+        validator.is_not_in_set(set)
+    # Assert
+    except ArgumentError:
+        pytest.fail(f'`{value}` should be in the set `{set}`, but an error occurred.')
+
+
+@pytest.mark.parametrize(
+    'value,set',
+    [
+        ('test', ['test']),
+        ('1234', ['1234', '5678', '9876']),
+        ('this-is-my-value', ['this-is-my-value', 'testing', '1234'])
+    ]
+)
+def test_is_not_in_set_throws_error_on_matching_set(value: str, set: list):
+    """
+    Tests that the `is_not_in_set()` method throws an ArgumentError when its value is present
+    in the supplied set.
+    """
+    # Arrange
+    validator = StringValidator(value, 'value')
+
+    # Assert
+    with pytest.raises(ArgumentError):
+        # Act
+        validator.is_not_in_set(set)
+
+
+def test_is_not_in_set_returns_validator_self():
+    """
+    Tests if the `is_not_in_set()` validator method returns itself after the validation is performed,
+    so that additional validations can be performed.
+    """
+    # Arrange
+    value = '1234'
+    set = ['test']
+    validator = StringValidator(value, 'value')
+
+    # Act
+    validator_returned = validator.is_not_in_set(set)
+
+    # Assert
+    assert validator_returned is validator
+
+
+@pytest.mark.parametrize(
+    'value,set',
+    [
+        ('test', ['tESt']),
+        ('1234', ['1234', '5678', '9876']),
+        ('this-is-my-value', ['this-is-MY-value', 'testing', '1234'])
+    ]
+)
+def test_is_in_set_case_insensitive_accepts_value_in_set(value: str, set: list):
+    """
+    Tests that the `is_in_set_case_insensitive()` method does not throw an ArgumentError when its value is present
+    in the supplied set, case insensitive.
+    """
+    # Arrange
+    validator = StringValidator(value, 'value')
+
+    # Act
+    try:
+        validator.is_in_set_case_insensitive(set)
+    # Assert
+    except ArgumentError:
+        pytest.fail(f'`{value}` should be in the set `{set}`, but an error occurred.')
+
+
+@pytest.mark.parametrize(
+    'value,set',
+    [
+        ('1234', ['test']),
+        ('test', ['1234', '5678', '9876']),
+        ('testing1234', ['this-is-MY-value', 'TESTING', '1234'])
+    ]
+)
+def test_is_in_set_case_insensitive_throws_error_on_non_matching_set(value: str, set: list):
+    """
+    Tests that the `is_in_set_case_insensitive()` method throws an ArgumentError when its value is not present
+    in the supplied set, case insensitive.
+    """
+    # Arrange
+    validator = StringValidator(value, 'value')
+
+    # Assert
+    with pytest.raises(ArgumentError):
+        # Act
+        validator.is_in_set_case_insensitive(set)
+
+
+def test_is_in_set_case_insensitive_returns_validator_self():
+    """
+    Tests if the `is_in_set_case_insensitive()` validator method returns itself after the validation is performed,
+    so that additional validations can be performed, case insensitive.
+    """
+    # Arrange
+    value = '1234'
+    set = ['1234']
+    validator = StringValidator(value, 'value')
+
+    # Act
+    validator_returned = validator.is_in_set_case_insensitive(set)
+
+    # Assert
+    assert validator_returned is validator
+
+
+@pytest.mark.parametrize(
+    'value,set',
+    [
+        ('1234', ['test']),
+        ('test', ['1234', '5678', '9876']),
+        ('testing1234', ['this-is-MY-value', 'TESTING', '1234'])
+    ]
+)
+def test_is_not_in_set_case_insensitive_accepts_value_not_in_set(value: str, set: list):
+    """
+    Tests that the `is_not_in_set_case_insensitive()` method accepts when its value is not present
+    in the supplied set, case insensitive.
+    """
+    # Arrange
+    validator = StringValidator(value, 'value')
+
+    # Act
+    try:
+        validator.is_not_in_set_case_insensitive(set)
+    # Assert
+    except ArgumentError:
+        pytest.fail(f'`{value}` should be in the set `{set}`, but an error occurred.')
+
+
+@pytest.mark.parametrize(
+    'value,set',
+    [
+        ('test', ['tESt']),
+        ('1234', ['1234', '5678', '9876']),
+        ('this-is-my-value', ['this-is-my-value', 'testing', '1234'])
+    ]
+)
+def test_is_not_in_set_case_insensitive_throws_error_on_matching_set(value: str, set: list):
+    """
+    Tests that the `is_not_in_set_case_insensitive()` method throws an ArgumentError when its value is present
+    in the supplied set, case insensitive.
+    """
+    # Arrange
+    validator = StringValidator(value, 'value')
+
+    # Assert
+    with pytest.raises(ArgumentError):
+        # Act
+        validator.is_not_in_set_case_insensitive(set)
+
+
+def test_is_not_in_set_case_insensitive_returns_validator_self():
+    """
+    Tests if the `is_not_in_set_case_insensitive()` validator method returns itself after the validation is performed,
+    so that additional validations can be performed.
+    """
+    # Arrange
+    value = '1234'
+    set = ['test']
+    validator = StringValidator(value, 'value')
+
+    # Act
+    validator_returned = validator.is_not_in_set_case_insensitive(set)
+
+    # Assert
+    assert validator_returned is validator

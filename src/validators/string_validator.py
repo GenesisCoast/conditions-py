@@ -350,3 +350,63 @@ class StringValidator(Validator):
             )
 
         return self
+
+
+    def is_in_set(self, set: list) -> StringValidator:
+        """
+        Checks to see if the given value matches any of the values in the supplied set. An exception is thrown otherwise.
+        """
+        if not self.value in set:
+            raise ArgumentError(
+                f'The argument `{self.argument_name}` should match a value specified in the set.',
+                self.value,
+                self.argument_name
+            )
+
+        return self
+
+
+    def is_in_set_case_insensitive(self, set: list) -> StringValidator:
+        """
+        Checks to see if the given value matches any of the values in the supplied set.
+        Case insensitive.
+        An exception is thrown otherwise.
+        """
+        if not self.value.lower() in (item.lower() for item in set):
+            raise ArgumentError(
+                f'The argument `{self.argument_name}` should match a value specified in the set.',
+                self.value,
+                self.argument_name
+            )
+
+        return self
+
+
+    def is_not_in_set(self, set: list) -> StringValidator:
+        """
+        Checks to see if the given value matches any of the values is not in the supplied set. An exception is thrown otherwise.
+        """
+        if self.value in set:
+            raise ArgumentError(
+                f'The argument `{self.argument_name}` should not match a value specified in the set.',
+                self.value,
+                self.argument_name
+            )
+
+        return self
+
+
+    def is_not_in_set_case_insensitive(self, set: list) -> StringValidator:
+        """
+        Checks to see if the given value matches any of the values is not in the supplied set.
+        Case insensitive.
+        An exception is thrown otherwise.
+        """
+        if self.value.lower() in (item.lower() for item in set):
+            raise ArgumentError(
+                f'The argument `{self.argument_name}` should not match a value specified in the set.',
+                self.value,
+                self.argument_name
+            )
+
+        return self
