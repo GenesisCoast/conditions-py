@@ -9,6 +9,9 @@ install:
 script: 
   - pytest
   - coverage run -m pytest
+  
+after_script:
+    cd src
 
 after_success:
     - codecov
