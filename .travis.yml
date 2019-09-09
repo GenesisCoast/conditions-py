@@ -13,4 +13,5 @@ after_script:
 - cd /src
 deploy:
   provider: pypi
+  twine_version: 1.12.1
   user: GenesisCoast
