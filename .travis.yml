@@ -1,23 +1,21 @@
 language: python
 python:
-  - "3.7.4"
-  
+- 3.7.4
 install:
-  - pip install codecov
-  - pip install pytest-cov
-  
-script: 
-  - pytest
-  - coverage run -m pytest
- 
+- pip install codecov
+- pip install pytest-cov
+script:
+- pytest
+- coverage run -m pytest
 after_success:
-    - codecov
-    
-after_script:
-    cd /src
-    
+- codecov
+after_script: 
+- cd /src
 deploy:
   provider: pypi
-  user: "GenesisCoast"
+  user: GenesisCoast
   password:
-    secure: "KrnXAc4u3W4quurQ1g+aFxh/k7Pt+BXODF8NSr+rVX9t4VzWJCSS4NFj7TAA2pYWR5Pa+ByyqMZS1N+s57aZxPVBMaykGe03lb5K2amFFIfh+j2HWmuiosnyMIQnHzKg6dg+3FjK5YxbzjMCETs/upeh3HbBaP37kWUzA5QPjDam4AqrAbYM6Dt7qhJCkPCchR8xBuIB506WeSyxe77Qz79NLVwb+5+SXdXAyBJz9v8BThTFhY3CemFx3wa1pTrzZZB5B9d+pX3OAJC2eds8Zk4YWvd3VZDtKvlKu8QqQlfpALXy5lpUOvLe/rWYp4W5ZLPT7tHxJGRU6rcDddTixfm9lYZK4obYWh7zc23gB9hN91IY3HJcz9zb5g+V7cSgNDZV3sXps7GzXGQpgTD7ZCHTRYRMF+7Ts0gflJS/EIQoK/ibRESECRHtzRnbsOYgrEXe0tlGl0NI6BkGewVudMm2Yp9XkjVxjABp5sNqCrBunneD8Azu3t2dADmrq8r9caPrJpjnKnJMHSRf0kmIpsLdAdmZUPUQngl6rCMBgsTcnabEQQjfyEiY+NEEDBFRrUqFxnksZRwtqUzp5z7U2Ox8amTWUmb7rXTBFJ4SKxZn/4Ah2lGczSXiOvawclk3xz4fh7bVVLGkkm1mMyIcHniMfm5Elj885iA+bmDZ638="
+    secure: KrnXAc4u3W4quurQ1g+aFxh/k7Pt+BXODF8NSr+rVX9t4VzWJCSS4NFj7TAA2pYWR5Pa+ByyqMZS1N+s57aZxPVBMaykGe03lb5K2amFFIfh+j2HWmuiosnyMIQnHzKg6dg+3FjK5YxbzjMCETs/upeh3HbBaP37kWUzA5QPjDam4AqrAbYM6Dt7qhJCkPCchR8xBuIB506WeSyxe77Qz79NLVwb+5+SXdXAyBJz9v8BThTFhY3CemFx3wa1pTrzZZB5B9d+pX3OAJC2eds8Zk4YWvd3VZDtKvlKu8QqQlfpALXy5lpUOvLe/rWYp4W5ZLPT7tHxJGRU6rcDddTixfm9lYZK4obYWh7zc23gB9hN91IY3HJcz9zb5g+V7cSgNDZV3sXps7GzXGQpgTD7ZCHTRYRMF+7Ts0gflJS/EIQoK/ibRESECRHtzRnbsOYgrEXe0tlGl0NI6BkGewVudMm2Yp9XkjVxjABp5sNqCrBunneD8Azu3t2dADmrq8r9caPrJpjnKnJMHSRf0kmIpsLdAdmZUPUQngl6rCMBgsTcnabEQQjfyEiY+NEEDBFRrUqFxnksZRwtqUzp5z7U2Ox8amTWUmb7rXTBFJ4SKxZn/4Ah2lGczSXiOvawclk3xz4fh7bVVLGkkm1mMyIcHniMfm5Elj885iA+bmDZ638=
+deployment:
+  password:
+    secure: ZNNWfEHLA8xin9ODgC/Ov13Ghk4V5MfJ9FL87uT0+tMy0EMCQmlWBW21Ke9S8mfIi9g+ltlKu1eHc0AqVpYWg6P6hsh9J7pEW+vv4h6CtsOZaEm7/e9wXDaO1VMzYGW/HRqwpd/kjhEkXsbdMBSElJATdjfzHnJQ0uVbceIuQisp9W82dftYFlqyn7uFdNFbaY8fNq4xobErG7IGmM2nDbdawORw/4SxL7Gtw8nfQYNB6vccWj/Hp42SojOzes9Q1ZbRuzgX7F784XN7e11+fTS4h2MjRcfamLecC/C4fGkkO7hwJvq/XSb6ztko8xfVHHq+dUAnGI9u2w9NnO52RlSO1xsan8lEj17F4UuwKsPGHlbw44R0OIsiikdpH2BXx9qGTQxdXLS9TDGWPCcezxnJrFP805lAaNjgmcZCDjLgKb/V067kf4qWf3sNWeXdYDfzqdBBUU++s90bJRm9J0ZFi2r68mYO4RMGhl1oOWvOK2Xqh9JQhcJC8U1kUNgBVMYRPKVKKS4ZUvb2fjv6qprL0edDiMQ6zF9NZhQlPtRX2DmqJDdYWflE280L+QXG11gUkXorTfkeKVBISdMlRr2pImi8KE6RkYnhhPv+cmRLpLjYaZuJMsHUES4NWlPLEfGLB1Q8Kss8YhceF+CdK8Vh4CsrRlGn6Ns4ZQ6+qDc=
