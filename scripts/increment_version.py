@@ -4,7 +4,7 @@ import pkg_resources
 
 if __name__ == "__main__":
     version = pkg_resources\
-		.get_distribution("compare_with_remote")\
+		.get_distribution("conditions_py")\
 		.version
 		
     split_version = version.split('.')
