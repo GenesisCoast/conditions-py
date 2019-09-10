@@ -17,9 +17,7 @@ if __name__ == "__main__":
     
 	new_version = '.'.join(split_version)
     
-	os.system("sed -i \"s/version='[0-9.]\+'/version='{}'/\" setup.py"
-              .format(new_version))
+	os.system(f"sed -i \"s/version='[0-9.]\+'/version='{new_version}'/\" setup.py")
     os.system("git add -u")
-    os.system("git commit -m '[ci skip] Increase version to {}'"
-              .format(new_version))
+    os.system(f"git commit -m '[ci skip] Increase version to {new_version}'")
     os.system("git push")
