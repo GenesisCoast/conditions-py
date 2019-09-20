@@ -2,6 +2,7 @@ import pytest
 from src.condition import Condition
 from tests.unit.type_example import TypeExample
 from tests.unit.type_example import TypeExample2
+from tests.unit.type_example import TypeExample3
 from tests.unit.type_example import TypeEqualityExample
 from src.errors.argument_error import ArgumentError
 from src.errors.argument_null_error import ArgumentNullError
@@ -21,6 +22,39 @@ def test_prnt_get_value_returns_value():
     assert actual == obj
     assert actual is obj
     assert type(actual) == type(obj)
+
+
+def test_intg_is_of_type_name_accepts_equivalent_multi_types():
+    """
+    Tests that the `is_of_type_name()` method does not throw an ArgumentError
+    when it is supplied with multiple types that one or more of, are equivalent to the specified type.
+    """
+    # Arrange
+    actual = type('type', (object,), {})()
+    expected = type('type', (object,), {})()
+
+    # Act
+    try:
+        Condition.requires_obj(actual, 'actual').is_of_type_name(expected, None)
+    # Assert
+    except ArgumentError:
+        pytest.fail(f'Type `{actual.__class__.__name__}` should match type `{expected.__class__.__name__}`, but an error occurred.')
+
+
+def test_intg_is_of_type_name_skips_check_if_value_is_none():
+    """
+    Tests that the `is_of_type_name()` skips the type check if the specified value is `None`.
+    """
+    # Arrange
+    actual = None
+    expected = type('type', (object,), {})()
+
+    # Act
+    try:
+        Condition.requires_obj(actual, 'actual').is_of_type_name(expected)
+    # Assert
+    except ArgumentError:
+        pytest.fail(f'Type `{actual.__class__.__name__}` should match type `{expected.__class__.__name__}`, but an error occurred.')
 
 
 def test_intg_is_of_type_name_accepts_equivalent_type():
@@ -87,6 +121,40 @@ def test_intg_is_of_type_name_throws_error_on_no_supplied_initialized_object():
         Condition.requires_obj(obj, 'obj').is_of_type_name(TypeExample)
 
 
+def test_intg_is_not_of_type_name_accepts_different_multi_types():
+    """
+    Tests that the `is_not_of_type_name()` method does not throw an ArgumentError
+    when it is supplied with a multiple types that are all not the same as the supplied type.
+    """
+    # Arrange
+    actual = type('actual', (object,), {})()
+    expected = type('expected', (object,), {})()
+    expected2 = type('expected2', (object,), {})()
+
+    # Act
+    try:
+        Condition.requires_obj(actual, 'actual').is_not_of_type_name(expected, expected2)
+    # Assert
+    except ArgumentError:
+        pytest.fail(f'Type `{actual.__class__.__name__}` should match type `{expected.__class__.__name__}`, but an error occurred.')
+
+
+def test_intg_is_not_of_type_name_skips_check_if_value_is_none():
+    """
+    Tests that the `is_not_of_type_name()` skips the type check if the specified value is `None`.
+    """
+    # Arrange
+    actual = None
+    expected = type('expected', (object,), {})()
+
+    # Act
+    try:
+        Condition.requires_obj(actual, 'actual').is_not_of_type_name(expected)
+    # Assert
+    except ArgumentError:
+        pytest.fail(f'Type `{actual.__class__.__name__}` should match type `{expected.__class__.__name__}`, but an error occurred.')
+
+
 def test_intg_is_not_of_type_name_accepts_different_type():
     """
     Tests the `is_not_of_type_name()` method through `Condition.requires_obj()` to see if it,
@@ -149,6 +217,37 @@ def test_intg_is_not_of_type_name_throws_error_on_no_supplied_initialized_object
         Condition.requires_obj(obj, 'obj').is_not_of_type_name(TypeExample2)
 
 
+def test_intg_is_of_type_accepts_equivalent_multi_types():
+    """
+    Tests that the `is_of_type()` method does not throw an ArgumentError
+    when it is supplied with multiple types that one or more of, are equivalent to the specified type.
+    """
+    # Arrange
+    obj = TypeExample()
+
+    # Act
+    try:
+        Condition.requires_obj(obj, 'obj').is_of_type(TypeExample, TypeExample2)
+    # Assert
+    except ArgumentError:
+        pytest.fail(f'Type `{obj.__class__.__name__}` should match type `{TypeExample.__name__}`, but an error occurred.')
+
+
+def test_intg_is_of_type_skips_check_if_value_is_none():
+    """
+    Tests that the `is_of_type()` skips the type check if the specified value is `None`.
+    """
+    # Arrange
+    obj = None
+
+    # Act
+    try:
+        Condition.requires_obj(obj, 'obj').is_of_type(TypeExample)
+    # Assert
+    except ArgumentError:
+        pytest.fail(f'Type `{obj.__class__.__name__}` should match type `{TypeExample.__name__}`, but an error occurred.')
+
+
 def test_intg_is_of_type_accepts_equivalent_type():
     """
     Tests the `is_of_type()` method through `Condition.requires_obj()` to see if it,
@@ -195,6 +294,37 @@ def test_intg_is_of_type_throws_error_on_no_supplied_type_class():
     with pytest.raises(TypeError):
         # Act
         Condition.requires_obj(actual, 'actual').is_of_type(expected)
+
+
+def test_intg_is_not_of_type_accepts_different_multi_types():
+    """
+    Tests that the `is_not_of_type()` method does not throw an ArgumentError
+    when it is supplied with multiple types that are all different from the specified class type.
+    """
+    # Arrange
+    obj = TypeExample()
+
+    # Act
+    try:
+        Condition.requires_obj(obj, 'obj').is_not_of_type(TypeExample2, TypeExample3)
+    # Assert
+    except ArgumentError:
+        pytest.fail(f'Type `{obj.__class__.__name__}` should match type `{TypeExample.__name__}`, but an error occurred.')
+
+
+def test_is_not_of_type_skips_check_if_value_is_none():
+    """
+    Tests that the `is_not_of_type()` skips the type check if the specified value is `None`.
+    """
+    # Arrange
+    obj = None
+
+    # Act
+    try:
+        Condition.requires_obj(obj, 'obj').is_not_of_type(TypeExample2)
+    # Assert
+    except ArgumentError:
+        pytest.fail(f'Type `{obj.__class__.__name__}` should match type `{TypeExample.__name__}`, but an error occurred.')
 
 
 def test_intg_is_not_of_type_accepts_different_type():

@@ -7,6 +7,11 @@ class TypeExample2:
         self.value = 'TestExample2'
 
 
+class TypeExample3:
+    def __init__(self):
+        self.value = 'TestExample3'
+
+
 class TypeEqualityExample:
     def __init__(self, value: int = 10):
         self.value = value

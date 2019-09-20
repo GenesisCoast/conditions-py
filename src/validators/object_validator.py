@@ -27,82 +27,120 @@ class ObjectValidator(Validator):
         return super().get_value()
 
 
-    def is_of_type_name(self, type: object) -> ObjectValidator:
+    def is_of_type_name(self, *types: list) -> ObjectValidator:
         """
         Checks whether the Type of the given value is of `type` by comparing the `__name__` attribute.
-        An exception is thrown otherwise.
+        An exception is thrown otherwise. Note: This condition is skipped if the given value is `None`.
         """
-        if isclass(type):
-            raise TypeError(
-                f'The argument `{self.argument_name}` should be an initialized object rather than a type, did you mean to use `is_of_type()`?.'
-            )
+        if self.value is not None:
 
-        if not self.value.__class__.__name__ == type.__class__.__name__:
-            raise ArgumentError(
-                f'The argument `{self.argument_name}` should be of type `{type.__class__.__name__}` but was `{self.value.__class__.__name__}`',
-                self.value,
-                self.argument_name
-            )
+            of_type = False
+
+            for type in types:
+                if isclass(type):
+                    raise TypeError(
+                        f'The argument `{self.argument_name}` should be an initialized object rather than a type, did you mean to use `is_of_type()`?.'
+                    )
+
+                if self.value.__class__.__name__ == type.__class__.__name__:
+                    of_type = True
+
+            if not of_type:
+                raise ArgumentError(
+                    f'The argument `{self.argument_name}` should be of type `{type.__class__.__name__}` but was `{self.value.__class__.__name__}`',
+                    self.value,
+                    self.argument_name
+                )
 
         return self
 
 
-    def is_not_of_type_name(self, type: object) -> ObjectValidator:
+    def is_not_of_type_name(self, *types: list) -> ObjectValidator:
         """
         Checks whether the Type of the given value is not of `type` by comparing the `__name__` attribute.
-        An exception is thrown otherwise.
+        An exception is thrown otherwise. Note: This condition is skipped if the given value is `None`.
         """
-        if isclass(type):
-            raise TypeError(
-                f'The argument `{self.argument_name}` should be an initialized object rather than a type, did you mean to use `is_not_of_type()`?.'
-            )
+        if self.value is not None:
 
-        if self.value.__class__.__name__ == type.__class__.__name__:
-            raise ArgumentError(
-                f'The argument `{self.argument_name}` should not be of type `{type.__class__.__name__}` but was `{self.value.__class__.__name__}`',
-                self.value,
-                self.argument_name
-            )
+            of_type = False
+
+            for type in types:
+                if isclass(type):
+                    raise TypeError(
+                        f'The argument `{self.argument_name}` should be an initialized object rather than a type, did you mean to use `is_not_of_type()`?.'
+                    )
+
+                if self.value.__class__.__name__ == type.__class__.__name__:
+                    of_type = True
+
+            if of_type:
+                raise ArgumentError(
+                    f'The argument `{self.argument_name}` should not be of type `{type.__class__.__name__}` but was `{self.value.__class__.__name__}`',
+                    self.value,
+                    self.argument_name
+                )
 
         return self
 
 
-    def is_of_type(self, type: Type) -> ObjectValidator:
+    def is_of_type(self, *types: list) -> ObjectValidator:
         """
         Checks whether the Type of the given value is of `type` by comparing the types using `isinstance()`.
-        An exception is thrown otherwise.
+        An exception is thrown otherwise. Note: This condition is skipped if the given value is `None`.
         """
-        if not isclass(type):
-            raise TypeError(
-                f'The argument `{self.argument_name}` should be an type rather than an initialized object, did you mean to use `is_of_type_name()`?.'
-            )
+        if self.value is not None:
 
-        if not isinstance(self.value, type):
-            raise ArgumentError(
-                f'The argument `{self.argument_name}` should be of type `{type.__name__}` but was `{self.value.__class__.__name__}`',
-                self.value,
-                self.argument_name
-            )
+            of_type = False
+
+            for type in types:
+                if self.value is not None:
+                    if not isclass(type):
+                        raise TypeError(
+                            f'The argument `{self.argument_name}` should be an type rather than an initialized object, did you mean to use `is_of_type_name()`?.'
+                        )
+
+                    if isinstance(self.value, type):
+                        of_type = True
+                else:
+                    of_type = True
+
+            if not of_type:
+                raise ArgumentError(
+                    f'The argument `{self.argument_name}` should be of type `{type.__name__}` but was `{self.value.__class__.__name__}`',
+                    self.value,
+                    self.argument_name
+                )
 
         return self
 
 
-    def is_not_of_type(self, type: Type) -> ObjectValidator:
+    def is_not_of_type(self, *types: list) -> ObjectValidator:
         """
         Checks whether the Type of the given value is of `type` by comparing the types using `isinstance()`.
-        An exception is thrown otherwise.
+        An exception is thrown otherwise. Note: This condition is skipped if the given value is `None`.
         """
-        if not isclass(type):
-            raise TypeError(
-                f'The argument `{self.argument_name}` should be an type rather than an initialized object, did you mean to use `is_not_of_type_name()`?.'
-            )
+        if self.value is not None:
 
-        if isinstance(self.value, type):
-            raise ArgumentError(
-                f'The argument `{self.argument_name}` should not be of type `{type.__name__}` but was `{self.value.__class__.__name__}`',
-                self.value,
-                self.argument_name
-            )
+            of_type = False
+
+            for type in types:
+                if self.value is not None:
+                    if not isclass(type):
+                        raise TypeError(
+                            f'The argument `{self.argument_name}` should be an type rather than an initialized object, did you mean to use `is_not_of_type_name()`?.'
+                        )
+
+                    if isinstance(self.value, type):
+                        of_type = True
+                else:
+                    of_type = True
+
+                if of_type:
+                    raise ArgumentError(
+                        f'The argument `{self.argument_name}` should not be of type `{type.__name__}` but was `{self.value.__class__.__name__}`',
+                        self.value,
+                        self.argument_name
+                    )
 
         return self
 
