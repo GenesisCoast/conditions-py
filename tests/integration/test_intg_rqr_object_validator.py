@@ -8,9 +8,9 @@ from src.errors.argument_error import ArgumentError
 from src.errors.argument_null_error import ArgumentNullError
 
 
-def test_prnt_get_value_returns_value():
+def test_intg_rqr_prnt_get_value_returns_value():
     """
-    Tests if the parent `get_value()` method returns the value saved in the validator.
+    Tests if the parent `get_value()` requires validator method returns the value saved in the validator.
     """
     # Arrange
     obj = type('type', (object,), {})()
@@ -24,9 +24,9 @@ def test_prnt_get_value_returns_value():
     assert type(actual) == type(obj)
 
 
-def test_intg_is_of_type_name_accepts_equivalent_multi_types():
+def test_intg_rqr_is_of_type_name_accepts_equivalent_multi_types():
     """
-    Tests that the `is_of_type_name()` method does not throw an ArgumentError
+    Tests the `is_of_type_name()` requires validator method does not throw an ArgumentError
     when it is supplied with multiple types that one or more of, are equivalent to the specified type.
     """
     # Arrange
@@ -41,9 +41,9 @@ def test_intg_is_of_type_name_accepts_equivalent_multi_types():
         pytest.fail(f'Type `{actual.__class__.__name__}` should match type `{expected.__class__.__name__}`, but an error occurred.')
 
 
-def test_intg_is_of_type_name_skips_check_if_value_is_none():
+def test_intg_rqr_is_of_type_name_skips_check_if_value_is_none():
     """
-    Tests that the `is_of_type_name()` skips the type check if the specified value is `None`.
+    Tests the `is_of_type_name()` requires validator skips the type check if the specified value is `None`.
     """
     # Arrange
     actual = None
@@ -57,9 +57,9 @@ def test_intg_is_of_type_name_skips_check_if_value_is_none():
         pytest.fail(f'Type `{actual.__class__.__name__}` should match type `{expected.__class__.__name__}`, but an error occurred.')
 
 
-def test_intg_is_of_type_name_accepts_equivalent_type():
+def test_intg_rqr_is_of_type_name_accepts_equivalent_type():
     """
-    Tests the `is_of_type_name()` method through `Condition.requires_obj()` to see if it,
+    Tests the `is_of_type_name()` requires validator method through `Condition.requires_obj()` to see if it,
     does not throw an ArgumentError when it is supplied with a type that is of the specified type.
     """
     # Arrange
@@ -74,9 +74,9 @@ def test_intg_is_of_type_name_accepts_equivalent_type():
         pytest.fail(f'Type `{actual.__class__.__name__}` should match type `{expected.__class__.__name__}`, but an error occurred.')
 
 
-def test_intg_is_of_type_name_accepts_the_same_type():
+def test_intg_rqr_is_of_type_name_accepts_the_same_type():
     """
-    Tests the `is_of_type_name()` method through `Condition.requires_obj()` to see if it,
+    Tests the `is_of_type_name()` requires validator method through `Condition.requires_obj()` to see if it,
     does not throw an ArgumentError when it is supplied with a type that is the same
     type instance.
     """
@@ -91,9 +91,9 @@ def test_intg_is_of_type_name_accepts_the_same_type():
         pytest.fail(f'Type `{type_name.__class__.__name__}` should match type `{type_name.__class__.__name__}`, but an error occurred.')
 
 
-def test_intg_is_of_type_name_throws_error_on_different_type():
+def test_intg_rqr_is_of_type_name_throws_error_on_different_type():
     """
-    Tests the `is_of_type_name()` method through `Condition.requires_obj()` to see if it,
+    Tests the `is_of_type_name()` requires validator method through `Condition.requires_obj()` to see if it,
     throws an ArgumentError when it is supplied with a type that is not of the
     specified type.
     """
@@ -107,9 +107,9 @@ def test_intg_is_of_type_name_throws_error_on_different_type():
         Condition.requires_obj(actual, 'actual').is_of_type_name(expected)
 
 
-def test_intg_is_of_type_name_throws_error_on_no_supplied_initialized_object():
+def test_intg_rqr_is_of_type_name_throws_error_on_no_supplied_initialized_object():
     """
-    Tests the `is_of_type_name()` method through `Condition.requires_obj()` to see if it,
+    Tests the `is_of_type_name()` requires validator method through `Condition.requires_obj()` to see if it,
 	throws a TypeError when it is supplied with a type that is not initialized.
     """
     # Arrange
@@ -121,9 +121,9 @@ def test_intg_is_of_type_name_throws_error_on_no_supplied_initialized_object():
         Condition.requires_obj(obj, 'obj').is_of_type_name(TypeExample)
 
 
-def test_intg_is_not_of_type_name_accepts_different_multi_types():
+def test_intg_rqr_is_not_of_type_name_accepts_different_multi_types():
     """
-    Tests that the `is_not_of_type_name()` method does not throw an ArgumentError
+    Tests the `is_not_of_type_name()` requires validator method does not throw an ArgumentError
     when it is supplied with a multiple types that are all not the same as the supplied type.
     """
     # Arrange
@@ -139,9 +139,9 @@ def test_intg_is_not_of_type_name_accepts_different_multi_types():
         pytest.fail(f'Type `{actual.__class__.__name__}` should match type `{expected.__class__.__name__}`, but an error occurred.')
 
 
-def test_intg_is_not_of_type_name_skips_check_if_value_is_none():
+def test_intg_rqr_is_not_of_type_name_skips_check_if_value_is_none():
     """
-    Tests that the `is_not_of_type_name()` skips the type check if the specified value is `None`.
+    Tests the `is_not_of_type_name()` requires validator method skips the type check if the specified value is `None`.
     """
     # Arrange
     actual = None
@@ -155,9 +155,9 @@ def test_intg_is_not_of_type_name_skips_check_if_value_is_none():
         pytest.fail(f'Type `{actual.__class__.__name__}` should match type `{expected.__class__.__name__}`, but an error occurred.')
 
 
-def test_intg_is_not_of_type_name_accepts_different_type():
+def test_intg_rqr_is_not_of_type_name_accepts_different_type():
     """
-    Tests the `is_not_of_type_name()` method through `Condition.requires_obj()` to see if it,
+    Tests the `is_not_of_type_name()` requires validator method through `Condition.requires_obj()` to see if it,
 	throws an ArgumentError
     when it is supplied with a type that is not the same as the supplied type.
     """
@@ -173,9 +173,9 @@ def test_intg_is_not_of_type_name_accepts_different_type():
         pytest.fail(f'Type `{actual.__class__.__name__}` should match type `{expected.__class__.__name__}`, but an error occurred.')
 
 
-def test_intg_is_not_of_type_name_throws_error_on_the_same_type():
+def test_intg_rqr_is_not_of_type_name_throws_error_on_the_same_type():
     """
-    Tests the `is_not_of_type_name()` method through `Condition.requires_obj()` to see if it,
+    Tests the `is_not_of_type_name()` requires validator method through `Condition.requires_obj()` to see if it,
 	throws an ArgumentError when it is supplied with a type that is the same type instance.
     """
     # Arrange
@@ -187,14 +187,13 @@ def test_intg_is_not_of_type_name_throws_error_on_the_same_type():
         Condition.requires_obj(type, 'actual').is_not_of_type_name(type_name)
 
 
-def test_intg_is_not_of_type_name_throws_error_on_equivalent_type():
+def test_intg_rqr_is_not_of_type_name_throws_error_on_equivalent_type():
     """
-    Tests the `is_not_of_type_name()` method through `Condition.requires_obj()` to see if it,
+    Tests the `is_not_of_type_name()` requires validator method through `Condition.requires_obj()` to see if it,
     throws an ArgumentError when it is supplied with a type that is equivalent to the
     specified type.
     """
     # Arrange
-    actual = type('type', (object,), {})()
     expected = type('type', (object,), {})()
 
     # Assert
@@ -203,9 +202,9 @@ def test_intg_is_not_of_type_name_throws_error_on_equivalent_type():
         Condition.requires_obj(type, 'actual').is_not_of_type_name(expected)
 
 
-def test_intg_is_not_of_type_name_throws_error_on_no_supplied_initialized_object():
+def test_intg_rqr_is_not_of_type_name_throws_error_on_no_supplied_initialized_object():
     """
-    Tests the `is_not_of_type_name()` method through `Condition.requires_obj()` to see if it,
+    Tests the `is_not_of_type_name()` requires validator method through `Condition.requires_obj()` to see if it,
 	throws a TypeError when it is supplied with a type that is not initialized.
     """
     # Arrange
@@ -217,9 +216,9 @@ def test_intg_is_not_of_type_name_throws_error_on_no_supplied_initialized_object
         Condition.requires_obj(obj, 'obj').is_not_of_type_name(TypeExample2)
 
 
-def test_intg_is_of_type_accepts_equivalent_multi_types():
+def test_intg_rqr_is_of_type_accepts_equivalent_multi_types():
     """
-    Tests that the `is_of_type()` method does not throw an ArgumentError
+    Tests the `is_of_type()` requires validator method does not throw an ArgumentError
     when it is supplied with multiple types that one or more of, are equivalent to the specified type.
     """
     # Arrange
@@ -233,9 +232,9 @@ def test_intg_is_of_type_accepts_equivalent_multi_types():
         pytest.fail(f'Type `{obj.__class__.__name__}` should match type `{TypeExample.__name__}`, but an error occurred.')
 
 
-def test_intg_is_of_type_skips_check_if_value_is_none():
+def test_intg_rqr_is_of_type_skips_check_if_value_is_none():
     """
-    Tests that the `is_of_type()` skips the type check if the specified value is `None`.
+    Tests the `is_of_type()` requires validator method skips the type check if the specified value is `None`.
     """
     # Arrange
     obj = None
@@ -248,9 +247,9 @@ def test_intg_is_of_type_skips_check_if_value_is_none():
         pytest.fail(f'Type `{obj.__class__.__name__}` should match type `{TypeExample.__name__}`, but an error occurred.')
 
 
-def test_intg_is_of_type_accepts_equivalent_type():
+def test_intg_rqr_is_of_type_accepts_equivalent_type():
     """
-    Tests the `is_of_type()` method through `Condition.requires_obj()` to see if it,
+    Tests the `is_of_type()` requires validator method through `Condition.requires_obj()` to see if it,
     throws an ArgumentError when it is supplied with a type that is equivalent
     to the specified type.
     """
@@ -265,9 +264,9 @@ def test_intg_is_of_type_accepts_equivalent_type():
         pytest.fail(f'Type `{obj.__class__.__name__}` should match type `{TypeExample.__name__}`, but an error occurred.')
 
 
-def test_intg_is_of_type_throws_error_on_different_type():
+def test_intg_rqr_is_of_type_throws_error_on_different_type():
     """
-    Tests the `is_of_type()` method through `Condition.requires_obj()` to see if it,
+    Tests the `is_of_type()` requires validator method through `Condition.requires_obj()` to see if it,
     throws an ArgumentError when it is supplied with a type that is different to
     the specified type.
     """
@@ -280,9 +279,9 @@ def test_intg_is_of_type_throws_error_on_different_type():
         Condition.requires_obj(obj, 'obj').is_of_type(TypeExample2)
 
 
-def test_intg_is_of_type_throws_error_on_no_supplied_type_class():
+def test_intg_rqr_is_of_type_throws_error_on_no_supplied_type_class():
     """
-    Tests the `is_of_type()` method through `Condition.requires_obj()` to see if it,
+    Tests the `is_of_type()` requires validator method through `Condition.requires_obj()` to see if it,
     throws a TypeError when it is supplied with a type that is initialized rather
     than a class type.
     """
@@ -296,9 +295,9 @@ def test_intg_is_of_type_throws_error_on_no_supplied_type_class():
         Condition.requires_obj(actual, 'actual').is_of_type(expected)
 
 
-def test_intg_is_not_of_type_accepts_different_multi_types():
+def test_intg_rqr_is_not_of_type_accepts_different_multi_types():
     """
-    Tests that the `is_not_of_type()` method does not throw an ArgumentError
+    Tests the `is_not_of_type()` requires validator method does not throw an ArgumentError
     when it is supplied with multiple types that are all different from the specified class type.
     """
     # Arrange
@@ -312,9 +311,9 @@ def test_intg_is_not_of_type_accepts_different_multi_types():
         pytest.fail(f'Type `{obj.__class__.__name__}` should match type `{TypeExample.__name__}`, but an error occurred.')
 
 
-def test_is_not_of_type_skips_check_if_value_is_none():
+def test_is_intg_rqr_not_of_type_skips_check_if_value_is_none():
     """
-    Tests that the `is_not_of_type()` skips the type check if the specified value is `None`.
+    Tests the `is_not_of_type()` requires validator method skips the type check if the specified value is `None`.
     """
     # Arrange
     obj = None
@@ -327,9 +326,9 @@ def test_is_not_of_type_skips_check_if_value_is_none():
         pytest.fail(f'Type `{obj.__class__.__name__}` should match type `{TypeExample.__name__}`, but an error occurred.')
 
 
-def test_intg_is_not_of_type_accepts_different_type():
+def test_intg_rqr_is_not_of_type_accepts_different_type():
     """
-    Tests the `is_not_of_type()` method through `Condition.requires_obj()` to see if it,
+    Tests the `is_not_of_type()` requires validator method through `Condition.requires_obj()` to see if it,
     throws an ArgumentError when it is supplied with a type that is different to the
     specified class type.
     """
@@ -344,9 +343,9 @@ def test_intg_is_not_of_type_accepts_different_type():
         pytest.fail(f'Type `{obj.__class__.__name__}` should match type `{TypeExample.__name__}`, but an error occurred.')
 
 
-def test_intg_is_not_of_type_throws_error_on_equivalent_type():
+def test_intg_rqr_is_not_of_type_throws_error_on_equivalent_type():
     """
-    Tests the `is_not_of_type()` method through `Condition.requires_obj()` to see if it,
+    Tests the `is_not_of_type()` requires validator method through `Condition.requires_obj()` to see if it,
     throws an ArgumentError when it is supplied with a type that is the same as the
     specified class type.
     """
@@ -359,9 +358,9 @@ def test_intg_is_not_of_type_throws_error_on_equivalent_type():
         Condition.requires_obj(obj, 'obj').is_not_of_type(TypeExample)
 
 
-def test_intg_is_not_of_type_throws_error_on_no_supplied_type_class():
+def test_intg_rqr_is_not_of_type_throws_error_on_no_supplied_type_class():
     """
-    Tests the `is_not_of_type()` method through `Condition.requires_obj()` to see if it,
+    Tests the `is_not_of_type()` requires validator method through `Condition.requires_obj()` to see if it,
     throws a TypeError when it is supplied with a type that is initialized rather
     than a class type.
     """
@@ -375,9 +374,9 @@ def test_intg_is_not_of_type_throws_error_on_no_supplied_type_class():
         Condition.requires_obj(actual, 'actual').is_not_of_type(expected)
 
 
-def test_intg_is_null_accepts_null_value():
+def test_intg_rqr_is_null_accepts_null_value():
     """
-    Tests the `is_null()` method through `Condition.requires_obj()` to see if it,
+    Tests the `is_null()` requires validator method through `Condition.requires_obj()` to see if it,
     throws an ArgumentNullError when it is supplied with a type that is None
     (Null).
     """
@@ -393,9 +392,9 @@ def test_intg_is_null_accepts_null_value():
         pytest.fail(f'The object should have been None (Null), but an error occurred.')
 
 
-def test_intg_is_null_throws_error_on_not_null_value():
+def test_intg_rqr_is_null_throws_error_on_not_null_value():
     """
-    Tests the `is_null()` method through `Condition.requires_obj()` to see if it,
+    Tests the `is_null()` requires validator method through `Condition.requires_obj()` to see if it,
     throws an ArgumentNullError when it is supplied with a type that is not
     None (Null).
     """
@@ -408,9 +407,9 @@ def test_intg_is_null_throws_error_on_not_null_value():
         Condition.requires_obj(type, 'type').is_null()
 
 
-def test_intg_is_not_null_accepts_not_null_value():
+def test_intg_rqr_is_not_null_accepts_not_null_value():
     """
-    Tests the `is_not_null()` method through `Condition.requires_obj()` to see if it,
+    Tests the `is_not_null()` requires validator method through `Condition.requires_obj()` to see if it,
     throws an ArgumentNullError when it is supplied with a type that is not None
     (Null).
     """
@@ -425,9 +424,9 @@ def test_intg_is_not_null_accepts_not_null_value():
         pytest.fail(f'The object should have been None (Null), but an error occurred.')
 
 
-def test_intg_is_not_null_throws_error_on_null_value():
+def test_intg_rqr_is_not_null_throws_error_on_null_value():
     """
-    Tests the `is_not_null()` method through `Condition.requires_obj()` to see if it,
+    Tests the `is_not_null()` requires validator method through `Condition.requires_obj()` to see if it,
 	throws an ArgumentNullError when it is supplied with a type that is None (Null).
     """
     # Arrange
@@ -439,9 +438,9 @@ def test_intg_is_not_null_throws_error_on_null_value():
         Condition.requires_obj(type, 'type').is_not_null()
 
 
-def test_intg_is_equal_to_accepts_identical_object():
+def test_intg_rqr_is_equal_to_accepts_identical_object():
     """
-    Tests the `is_equal_to()` method through `Condition.requires_obj()` to see if it,
+    Tests the `is_equal_to()` requires validator method through `Condition.requires_obj()` to see if it,
 	throws an ArgumentError when the object is identical to the supplied object.
     """
     # Arrange
@@ -456,9 +455,9 @@ def test_intg_is_equal_to_accepts_identical_object():
         pytest.fail(f'`{actual.__class__.__name__}` should be equal to `{expected.__class__.__name__}`, but an error occurred')
 
 
-def test_intg_is_equal_throws_error_on_non_identical_object():
+def test_intg_rqr_is_equal_throws_error_on_non_identical_object():
     """
-    Tests the `is_equal_to()` method through `Condition.requires_obj()` to see if it,
+    Tests the `is_equal_to()` requires validator method through `Condition.requires_obj()` to see if it,
 	throws an ArgumentError when the object is not identical to the supplied object.
     """
     # Arrange
@@ -471,9 +470,9 @@ def test_intg_is_equal_throws_error_on_non_identical_object():
         Condition.requires_obj(actual, 'actual').is_equal_to(expected)
 
 
-def test_intg_is_not_equal_to_accepts_non_identical_object_class():
+def test_intg_rqr_is_not_equal_to_accepts_non_identical_object_class():
     """
-    Tests the `is_not_equal_to()` method through `Condition.requires_obj()` to see if it,
+    Tests the `is_not_equal_to()` requires validator method through `Condition.requires_obj()` to see if it,
 	throws an ArgumentError when the object is not identical to the supplied object.
     """
     # Arrange
@@ -488,9 +487,9 @@ def test_intg_is_not_equal_to_accepts_non_identical_object_class():
         pytest.fail(f'`{actual.__class__.__name__}` should be not equal to `{expected.__class__.__name__}`, but an error occurred')
 
 
-def test_intg_is_not_equal_throws_error_on_identical_object():
+def test_intg_rqr_is_not_equal_throws_error_on_identical_object():
     """
-    Tests the `is_not_equal_to()` method through `Condition.requires_obj()` to see if it,
+    Tests the `is_not_equal_to()` requires validator method through `Condition.requires_obj()` to see if it,
 	throws an ArgumentError when the object is identical to the supplied object.
     """
     # Arrange
@@ -503,11 +502,11 @@ def test_intg_is_not_equal_throws_error_on_identical_object():
         Condition.requires_obj(actual, 'actual').is_not_equal_to(expected)
 
 
-def test_intg_is_equal_using_eq_accepts_equal_objects():
+def test_intg_rqr_is_equal_using_eq_accepts_equal_objects():
     """
-    Tests the `is_equal_to_using_eq()` method through `Condition.requires_obj()` to see if it,
+    Tests the `is_equal_to_using_eq()` requires validator method through `Condition.requires_obj()` to see if it,
     throws an ArgumentError when the object is equal to the supplied object using the
-    `__eq__()` method.
+    `__eq__()` validator method.
     """
     # Arrange
     actual = TypeEqualityExample(10)
@@ -521,11 +520,11 @@ def test_intg_is_equal_using_eq_accepts_equal_objects():
         pytest.fail(f'`{actual.__class__.__name__}` should be equal to `{expected.__class__.__name__}` when using the `__eq__()` function, but an error occurred')
 
 
-def test_intg_is_equal_using_eq_should_throw_on_unequal_objects():
+def test_intg_rqr_is_equal_using_eq_should_throw_on_unequal_objects():
     """
-    Tests the `is_equal_to_using_eq()` method through `Condition.requires_obj()` to see if it,
+    Tests the `is_equal_to_using_eq()` requires validator method through `Condition.requires_obj()` to see if it,
     throws an ArgumentError when the object is not equal to the supplied object using the
-    `__eq__()` method.
+    `__eq__()` validator method.
     """
     # Arrange
     actual = TypeEqualityExample(10)
@@ -537,11 +536,11 @@ def test_intg_is_equal_using_eq_should_throw_on_unequal_objects():
         Condition.requires_obj(actual, 'actual').is_equal_to_using_eq(expected)
 
 
-def test_intg_is_not_equal_using_ne_accepts_unequal_objects():
+def test_intg_rqr_is_not_equal_using_ne_accepts_unequal_objects():
     """
-    Tests the `is_not_equal_to_using_eq()` method through `Condition.requires_obj()` to see if it,
+    Tests the `is_not_equal_to_using_eq()` requires validator method through `Condition.requires_obj()` to see if it,
     throws an ArgumentError when the object is not equal to the supplied object using the
-    `__ne__()` method.
+    `__ne__()` validator method.
     """
     # Arrange
     actual = TypeEqualityExample(10)
@@ -555,11 +554,11 @@ def test_intg_is_not_equal_using_ne_accepts_unequal_objects():
         pytest.fail(f'`{actual.__class__.__name__}` should be equal to `{expected.__class__.__name__}` when using the `__eq__()` function, but an error occurred')
 
 
-def test_intg_is_not_equal_using_ne_should_throw_on_equal_objects():
+def test_intg_rqr_is_not_equal_using_ne_should_throw_on_equal_objects():
     """
-    Tests the `is_not_equal_to_using_ne()` method through `Condition.requires_obj()` to see if it,
+    Tests the `is_not_equal_to_using_ne()` requires validator method through `Condition.requires_obj()` to see if it,
     throws an ArgumentError when the object is equal to the supplied object using the
-    `__ne__()` method.
+    `__ne__()` validator method.
     """
     # Arrange
     actual = TypeEqualityExample(10)

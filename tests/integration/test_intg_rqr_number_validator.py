@@ -29,9 +29,9 @@ number = TypeVar('number', int, float)
         (2500.7869)
     ]
 )
-def test_intg_prnt_get_value_returns_value(value):
+def test_intg_rqr_prnt_get_value_returns_value(value):
     """
-    Tests if the parent `get_value()` method returns the value saved in the validator.
+    Tests if the parent `get_value()` requires validator method returns the value saved in the validator.
     """
     # Act
     actual = Condition.requires_num(value, 'value').get_value()
@@ -63,13 +63,13 @@ def test_intg_prnt_get_value_returns_value(value):
         (2500.7869, 2000.1111, 3000.7893)
     ]
 )
-def test_intg_is_in_range_accepts_valid_range(
+def test_intg_rqr_is_in_range_accepts_valid_range(
     value: number,
     min_value: number,
     max_value: number
 ):
     """
-    Tests the `is_in_range()` validator method through `Condition.requires_num()` to see if it,
+    Tests the `is_in_range()` requires validator method through `Condition.requires_num()` to see if it,
     does not throw an ArgumentOutOfRangeError when it is suppied with a value that is within
     the supplied range.
     """
@@ -102,13 +102,13 @@ def test_intg_is_in_range_accepts_valid_range(
         (2000.1111, 2000.7869, 3000.7893)
     ]
 )
-def test_intg_is_in_range_throws_error_on_invalid_range(
+def test_intg_rqr_is_in_range_throws_error_on_invalid_range(
     value: number,
     min_value: number,
     max_value: number
 ):
     """
-    Tests the `is_in_range()` method through `Condition.requires_num()` to see if it,
+    Tests the `is_in_range()` requires validator method through `Condition.requires_num()` to see if it,
     throws an ArgumentOutOfRangeError when it is supplied with a value not in the supplied range.
     """
     # Assert
@@ -138,13 +138,13 @@ def test_intg_is_in_range_throws_error_on_invalid_range(
         (2000.1111, 2000.7869, 3000.7893)
     ]
 )
-def test_intg_is_not_in_range_accepts_valid_range(
+def test_intg_rqr_is_not_in_range_accepts_valid_range(
     value: number,
     min_value: number,
     max_value: number
 ):
     """
-    Tests the `is_not_in_range()` method through `Condition.requires_num()` to see if it,
+    Tests the `is_not_in_range()` requires validator method through `Condition.requires_num()` to see if it,
     does not throw an ArgumentOutOfRangeError when it is supplied with a value not in the
     supplied range.
     """
@@ -177,13 +177,13 @@ def test_intg_is_not_in_range_accepts_valid_range(
         (2500.7869, 2000.1111, 3000.7893)
     ]
 )
-def test_intg_is_not_in_range_throws_error_on_invalid_range(
+def test_intg_rqr_is_not_in_range_throws_error_on_invalid_range(
     value: number,
     min_value: number,
     max_value: number
 ):
     """
-    Tests the `is_not_in_range()` method through `Condition.requires_num()` to see if it,
+    Tests the `is_not_in_range()` requires validator method through `Condition.requires_num()` to see if it,
     throws an ArgumentOutOfRangeError when it is supplied with a value in the supplied range.
     """
     # Assert
@@ -213,12 +213,12 @@ def test_intg_is_not_in_range_throws_error_on_invalid_range(
         (2500.7869, 2000.1111)
     ]
 )
-def test_intg_is_greater_than_accepts_greater_than_value(
+def test_intg_rqr_is_greater_than_accepts_greater_than_value(
     value: number,
     min_value: number
 ):
     """
-    Tests the `is_greater_than()` method through `Condition.requires_num()` to see if it,
+    Tests the `is_greater_than()` requires validator method through `Condition.requires_num()` to see if it,
     does not throw an ArgumentOutOfRangeError when it is supplied with a value that is
     greater than the minimum value.
     """
@@ -251,12 +251,12 @@ def test_intg_is_greater_than_accepts_greater_than_value(
         (2500.7869, 3000.7893)
     ]
 )
-def test_intg_is_greater_than_throws_error_on_less_than_value(
+def test_intg_rqr_is_greater_than_throws_error_on_less_than_value(
     value: number,
     min_value: number
 ):
     """
-    Tests the `is_greater_than()` method through `Condition.requires_num()` to see if it,
+    Tests the `is_greater_than()` requires validator method through `Condition.requires_num()` to see if it,
     throws an ArgumentOutOfRangeError when it is supplied with a value that is less than
     the minimum value.
     """
@@ -287,12 +287,12 @@ def test_intg_is_greater_than_throws_error_on_less_than_value(
         (2500.7869, 2500.7869)
     ]
 )
-def test_intg_is_greater_than_throws_error_on_equal_value(
+def test_intg_rqr_is_greater_than_throws_error_on_equal_value(
     value: number,
     min_value: number
 ):
     """
-    Tests the `is_greater_than()` method through `Condition.requires_num()` to see if it,
+    Tests the `is_greater_than()` requires validator method through `Condition.requires_num()` to see if it,
     throws an ArgumentOutOfRangeError when it is supplied with a value that is equal
     to the minimum value.
     """
@@ -323,12 +323,12 @@ def test_intg_is_greater_than_throws_error_on_equal_value(
         (2500.7869, 2000.1111)
     ]
 )
-def test_intg_is_greater_or_equal_accepts_greater_than_value(
+def test_intg_rqr_is_greater_or_equal_accepts_greater_than_value(
     value: number,
     min_value: number
 ):
     """
-    Tests the `is_greater_or_equal()` method through `Condition.requires_num()` to see if it,
+    Tests the `is_greater_or_equal()` requires validator method through `Condition.requires_num()` to see if it,
     does not throw an ArgumentOutOfRangeError when it is supplied with a value that is greater
     than the minimum value.
     """
@@ -361,12 +361,12 @@ def test_intg_is_greater_or_equal_accepts_greater_than_value(
         (2500.7869, 2500.7869)
     ]
 )
-def test_intg_is_greater_or_equal_accepts_equal_value(
+def test_intg_rqr_is_greater_or_equal_accepts_equal_value(
     value: number,
     min_value: number
 ):
     """
-    Tests the `is_greater_or_equal()` method through `Condition.requires_num()` to see if it,
+    Tests the `is_greater_or_equal()` requires validator method through `Condition.requires_num()` to see if it,
     does not throw an ArgumentOutOfRangeError when it is supplied with a value that is
     equal to the minimum value.
     """
@@ -399,12 +399,12 @@ def test_intg_is_greater_or_equal_accepts_equal_value(
         (2500.7869, 3000.7893)
     ]
 )
-def test_intg_is_greater_or_equal_throws_error_on_less_than_value(
+def test_intg_rqr_is_greater_or_equal_throws_error_on_less_than_value(
     value: number,
     min_value: number
 ):
     """
-    Tests the `is_greater_or_equal()` method through `Condition.requires_num()` to see if it,
+    Tests the `is_greater_or_equal()` requires validator method through `Condition.requires_num()` to see if it,
     throws an ArgumentOutOfRangeError when it is supplied with a value that is less than the
     minimum value.
     """
@@ -435,12 +435,12 @@ def test_intg_is_greater_or_equal_throws_error_on_less_than_value(
         (2500.7869, 3000.7893)
     ]
 )
-def test_intg_is_less_than_accepts_less_than_value(
+def test_intg_rqr_is_less_than_accepts_less_than_value(
     value: number,
     max_value: number
 ):
     """
-    Tests the `is_less_than()` method through `Condition.requires_num()` to see if it,
+    Tests the `is_less_than()` requires validator method through `Condition.requires_num()` to see if it,
     does not throw an ArgumentOutOfRangeError when it is supplied with a value that is
     less than the maximum value.
     """
@@ -473,12 +473,12 @@ def test_intg_is_less_than_accepts_less_than_value(
         (2500.7869, 2000.1111)
     ]
 )
-def test_intg_is_less_than_throws_error_on_greater_than_value(
+def test_intg_rqr_is_less_than_throws_error_on_greater_than_value(
     value: number,
     max_value: number
 ):
     """
-    Tests the `is_less_than()` method through `Condition.requires_num()` to see if it,
+    Tests the `is_less_than()` requires validator method through `Condition.requires_num()` to see if it,
     throws an ArgumentOutOfRangeError when it is supplied with a value that is greater
     than the maximum value.
     """
@@ -509,12 +509,12 @@ def test_intg_is_less_than_throws_error_on_greater_than_value(
         (2500.7869, 2500.7869)
     ]
 )
-def test_intg_is_less_than_throws_error_on_equal_value(
+def test_intg_rqr_is_less_than_throws_error_on_equal_value(
     value: number,
     max_value: number
 ):
     """
-    Tests the `is_less_than()` method through `Condition.requires_num()` to see if it,
+    Tests the `is_less_than()` requires validator method through `Condition.requires_num()` to see if it,
     throws an ArgumentOutOfRangeError when it is supplied with a value that is equal
     to the maximum value.
     """
@@ -545,12 +545,12 @@ def test_intg_is_less_than_throws_error_on_equal_value(
         (2500.7869, 3000.7893)
     ]
 )
-def test_intg_is_less_or_equal_accepts_less_than_value(
+def test_intg_rqr_is_less_or_equal_accepts_less_than_value(
     value: number,
     max_value: number
 ):
     """
-    Tests the `is_less_or_equal()` method through `Condition.requires_num()` to see if it,
+    Tests the `is_less_or_equal()` requires validator method through `Condition.requires_num()` to see if it,
     does not throw an ArgumentOutOfRangeError when it is supplied with a value that is less
     than the maximum value.
     """
@@ -583,12 +583,12 @@ def test_intg_is_less_or_equal_accepts_less_than_value(
         (2500.7869, 2500.7869)
     ]
 )
-def test_intg_is_less_or_equal_accepts_equal_value(
+def test_intg_rqr_is_less_or_equal_accepts_equal_value(
     value: number,
     max_value: number
 ):
     """
-    Tests the `is_less_or_equal()` method through `Condition.requires_num()` to see if it,
+    Tests the `is_less_or_equal()` requires validator method through `Condition.requires_num()` to see if it,
     does not throw an ArgumentOutOfRangeError when it is supplied with a value that is
     equal to the maximum value.
     """
@@ -621,12 +621,12 @@ def test_intg_is_less_or_equal_accepts_equal_value(
         (2500.7869, 2000.1111)
     ]
 )
-def test_intg_is_less_or_equal_throws_error_on_greater_than_value(
+def test_intg_rqr_is_less_or_equal_throws_error_on_greater_than_value(
     value: number,
     max_value: number
 ):
     """
-    Tests the `is_less_or_equal()` method through `Condition.requires_num()` to see if it,
+    Tests the `is_less_or_equal()` requires validator method through `Condition.requires_num()` to see if it,
     throws an ArgumentOutOfRangeError when it is supplied with a value that is greater than
     the maximum value.
     """
@@ -657,12 +657,12 @@ def test_intg_is_less_or_equal_throws_error_on_greater_than_value(
         (2500.7869, 2500.7869)
     ]
 )
-def test_intg_is_equal_to_accepts_valid_value(
+def test_intg_rqr_is_equal_to_accepts_valid_value(
     value: number,
     equal_to: number
 ):
     """
-    Tests the `is_equal()` method through `Condition.requires_num()` to see if it,
+    Tests the `is_equal()` requires validator method through `Condition.requires_num()` to see if it,
     does not throw an ArgumentOutOfRangeError when it is supplied with a value that is
     equal to the equal value.
     """
@@ -695,12 +695,12 @@ def test_intg_is_equal_to_accepts_valid_value(
         (2500.7869, 3000.7893)
     ]
 )
-def test_intg_is_equal_to_throws_error_on_invalid_value(
+def test_intg_rqr_is_equal_to_throws_error_on_invalid_value(
     value: number,
     not_equal_to: number
 ):
     """
-    Tests the `is_equal()` method through `Condition.requires_num()` to see if it,
+    Tests the `is_equal()` requires validator method through `Condition.requires_num()` to see if it,
     throws an ArgumentOutOfRangeError when it is supplied with a value that is not
     equal to the equal value.
     """
@@ -731,12 +731,12 @@ def test_intg_is_equal_to_throws_error_on_invalid_value(
         (2500.7869, 3000.7893)
     ]
 )
-def test_intg_is_not_equal_to_accepts_valid_value(
+def test_intg_rqr_is_not_equal_to_accepts_valid_value(
     value: number,
     equal_to: number
 ):
     """
-    Tests the `is_not_equal()` method through `Condition.requires_num()` to see if it,
+    Tests the `is_not_equal()` requires validator method through `Condition.requires_num()` to see if it,
     does not throw an ArgumentOutOfRangeError when it is supplied with a value that is
     not equal to the not equal value.
     """
@@ -769,12 +769,12 @@ def test_intg_is_not_equal_to_accepts_valid_value(
         (2500.7869, 2500.7869)
     ]
 )
-def test_intg_is_not_equal_to_throws_error_on_invalid_value(
+def test_intg_rqr_is_not_equal_to_throws_error_on_invalid_value(
     value: number,
     not_equal_to: number
 ):
     """
-    Tests the `is_not_equal()` method through `Condition.requires_num()` to see if it,
+    Tests the `is_not_equal()` requires validator method through `Condition.requires_num()` to see if it,
     throws an ArgumentOutOfRangeError when it is supplied with a value that is equal
     to the not equal value.
     """
@@ -805,9 +805,9 @@ def test_intg_is_not_equal_to_throws_error_on_invalid_value(
         (2500.7869)
     ]
 )
-def test_intg_is_positive_accepts_positive_number(value: number):
+def test_intg_rqr_is_positive_accepts_positive_number(value: number):
     """
-    Tests that the `is_positive()` method does not throw an ArgumentOutOfRangeError
+    Tests the `is_positive()` requires validator method does not throw an ArgumentOutOfRangeError
     when the value is a positive number.
     """
     # Act
@@ -839,9 +839,9 @@ def test_intg_is_positive_accepts_positive_number(value: number):
         (-2500.7869)
     ]
 )
-def test_intg_is_positive_throws_error_on_negative_number(value: number):
+def test_intg_rqr_is_positive_throws_error_on_negative_number(value: number):
     """
-    Tests that the `is_positive()` method does not throw an ArgumentOutOfRangeError
+    Tests the `is_positive()` requires validator method does not throw an ArgumentOutOfRangeError
     when the value is a negative number.
     """
     # Assert
@@ -871,9 +871,9 @@ def test_intg_is_positive_throws_error_on_negative_number(value: number):
         (-2500.7869)
     ]
 )
-def test_intg_is_negative_accepts_negative_number(value: number):
+def test_intg_rqr_is_negative_accepts_negative_number(value: number):
     """
-    Tests that the `is_negative()` method does not throw an ArgumentOutOfRangeError
+    Tests the `is_negative()` requires validator method does not throw an ArgumentOutOfRangeError
     when the value is a negative number.
     """
     # Act
@@ -905,9 +905,9 @@ def test_intg_is_negative_accepts_negative_number(value: number):
         (2500.7869)
     ]
 )
-def test_intg_is_negative_throws_error_on_positive_number(value: number):
+def test_intg_rqr_is_negative_throws_error_on_positive_number(value: number):
     """
-    Tests that the `is_negative()` method does not throw an ArgumentOutOfRangeError
+    Tests the `is_negative()` requires validator method does not throw an ArgumentOutOfRangeError
     when the value is a positive number.
     """
     # Assert

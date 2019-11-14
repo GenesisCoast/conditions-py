@@ -2,7 +2,7 @@ from setuptools import setup
 
 setup(
     name='conditions_py',
-    version='0.1.6',
+    version='0.1.7',
     packages=[
         'conditions_py',
         'conditions_py.errors',

@@ -45,3 +45,35 @@ class Condition:
         Initializes the conditions framework using the `string` validator.
         """
         return StringValidator(value, argument_name)
+
+
+    @staticmethod
+    def ensures_obj(value: object, argument_name: str) -> ObjectValidator:
+        """
+        Initializes the conditions framework using the `number (float, int)` validator.
+        """
+        return ObjectValidator(value, argument_name)
+
+
+    @staticmethod
+    def ensures_num(value: number, argument_name: str) -> NumberValidator:
+        """
+        Initializes the conditions framework using the `number (float, int)` validator.
+        """
+        return NumberValidator(value, argument_name)
+
+
+    @staticmethod
+    def ensures_bool(value: bool, argument_name: str) -> BooleanValidator:
+        """
+        Initializes the conditions framework using the `boolean` validator.
+        """
+        return BooleanValidator(value, argument_name)
+
+
+    @staticmethod
+    def ensures_str(value: object, argument_name: str) -> StringValidator:
+        """
+        Initializes the conditions framework using the `string` validator.
+        """
+        return StringValidator(value, argument_name)
